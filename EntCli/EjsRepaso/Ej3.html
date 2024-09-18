@@ -4,7 +4,62 @@
 <title>HTML Tutorial</title>
 </head>
 <body>
+<form>
+<table style="width: 60%; height: 30%;">
+<tr>
+    <th colspan="2" style="background-color: blueviolet;">Por favor, rellena estos datos</th>
+</tr>
+<tr>
+    <td style="background-color:greenyellow; font-weight: bold;">Nombre:</td>
+    <td style="background-color: mediumaquamarine;"><input type="text"></td>
+</tr>
+<tr>
+    <td style="background-color:greenyellow; font-weight: bold;">Apellidos:</td>
+    <td style="background-color: mediumaquamarine;"><input type="text"></td>
+</tr>
+<tr>
+    <td style="background-color:greenyellow; font-weight: bold;">Dirección:</td>
+    <td style="background-color: mediumaquamarine;"><input type="text"></td>
+</tr>
+<tr>
+    <td style="background-color:greenyellow; font-weight: bold;">Código postal:</td>
+    <td style="background-color: mediumaquamarine;"><input type="text" size="7"></td>
+</tr>
+<tr>
+    <td style="background-color:greenyellow; font-weight: bold;">Incluir una foto:</td>
+    <td style="background-color: mediumaquamarine;"><input type="text" size="20"><input type="file" accept="image/*"></td>
+</tr>
+<tr>
+    <td style="background-color:greenyellow; font-weight: bold;">Marca tu equipo favorito:</td>
+    <td style="background-color: mediumaquamarine;"><input type="radio" id="Equipo1" name="equipofavorito"><label for="Equipo1">Real Madrid</label> <input type="radio" id="Equipo2" name="equipofavorito"> <label for="Equipo2">Atlético de Madrid</label> </td>
+</tr>
+<tr>
+    <td style="background-color:greenyellow; font-weight: bold;">Marca tu música favorita:</td>
+    <td style="background-color: mediumaquamarine;"><input type="checkbox" id="Rock" name="musicafavorita"><label for="Rock">Rock</label> <input type="checkbox" id="Pop" name="equipofavorito"> 
+        <label for="Pop">Pop</label> <input type="checkbox" id="Heavy" name="musicafavorita"> <label for="Heavy">Heavy</label>
+       <input type="checkbox" id="Tecno" name="musicafavorita"><label for="Tecno">Tecno</label>
+    </td>
+</tr>
+<tr>
+    <td style="background-color:greenyellow; font-weight: bold;">Elige un escritor:</td>
+    <td style="background-color: mediumaquamarine;"><select name="escritor">
+        <option value="Cervantes">Cervantes</option>
+        <option value="Gongora">Góngora</option>
+        <option value="OscarWilde">Oscar Wilde</option>
+        <option value="AynRand">Ayn Rand</option>
+        <option value="Kafka">Kafka</option>
+    </select></td>
+</tr>
+<tr>
+    <td style="background-color:greenyellow; vertical-align: top; font-weight: bold;">¿Algún comentario?</td>
+    <td style="background-color: mediumaquamarine;"><input type="text" style="height: 200px" ></td>                <!-- No se por qué empieza a escribir en el centro de la celda-->
+</tr>
+<tr></tr>
+    <td style="background-color:greenyellow;"><input type="submit" value="Enviar"></td>
+    <td style="background-color: mediumaquamarine;"><input type="reset" value="Limpiar"></td>
+</tr>
 
-
+</table>
+</form>
 </body>
 </html>
