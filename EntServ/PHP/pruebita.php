@@ -1,8 +1,11 @@
+<html>
+    <head></head>
+    <body>
+
 <?php
 
+echo "Hola";
 
-if 
-:)) vCA
-
-+ -^ 
-;
+?>
+</body>
+</html>
