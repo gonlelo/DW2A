@@ -11,10 +11,11 @@ $num6=rand(0,9);
 $num7=rand(0,9);
 $num8=rand(0,9);
 $numString="$num1$num2$num3$num4$num5$num6$num7$num8";
+$posición=(int)$numString%23;
+$Letras="TRWAGMYFPDXBNJZSQVHLCKE";
+$letra=$Letras[$posición];
 
-
-echo $numString;
-echo $num1.$num2.$num3.$num4.$num5.$num6.$num7.$num8;
+echo $numString.$letra;
 
 ?>
 </body>
