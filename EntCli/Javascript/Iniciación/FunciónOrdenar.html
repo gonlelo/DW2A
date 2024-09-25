@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <script>
+    function OrdenarTresEnteros(num1, num2, num3) {
+        let pequeño;
+        let mayor;
+        let mediano;
+        if (num1>num2 && num1>num3) {
+            mayor=num1;
+            if (num2>num3) {
+                mediano=num2;
+                pequeño=num3;
+            }else{
+                mediano=num3;
+                pequeño=num2;
+            }
+        } else if (num2>num1 && num2>num3) {
+            mayor=num2;
+            if (num1>num3) {
+                mediano=num1;
+                pequeño=num3;
+            }else{
+                mediano=num3;
+                pequeño=num1;
+            }
+        } else{
+            mayor=num3;
+            if (num2>num1) {
+                mediano=num2;
+                pequeño=num1;
+            } else{
+                mediano=num1;
+                pequeño=num2;
+            }
+        }
+        document.write(pequeño + " - " + mediano + " - " + mayor);    
+    }
+
+  </script>
+</head>
+<body>
+    <script>
+        let num1=prompt("Introduce un número");
+        let num2=prompt("Introduce otro número");
+        let num3=prompt("Introduce otro número");
+
+OrdenarTresEnteros(num1,num2,num3);
+
+    </script>
+
+</body>
+</html>

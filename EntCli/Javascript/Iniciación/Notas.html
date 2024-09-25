@@ -1,0 +1,31 @@
+<script>
+    let contadorSB=0;
+    let contadorNT=0;
+    let contadorB=0;
+    let contadorIN=0;
+    let nota;
+
+    for (let i = 1; i < 11; i++) {
+        nota=parseFloat(prompt("Escribe la " + i + "º nota"));
+        if (nota>=9) {
+            contadorSB++;
+        }else if (nota<=9 && nota>=7) {
+            contadorNT++;
+        }else if (nota<=7 && nota>=5) {
+            contadorB++;
+        }
+        else if (nota<5) {
+            contadorIN++;
+        }
+    }
+
+    document.write("Sobresalientes: " + contadorSB + "<br>");
+    document.write("Notables: " + contadorNT + "<br>");
+    document.write("Bienes: " + contadorB + "<br>");
+    document.write("Suspensos: " + contadorIN + "<br>");
+
+
+
+
+
+</script>

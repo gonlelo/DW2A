@@ -1,0 +1,18 @@
+<script>
+    let contadorPares=0;
+    let contadorImpares=0;
+    let num;
+
+    for (let i = 1; i < 6; i++) {
+        num=parseFloat(prompt("Escribe el " + i + "º número"));
+        if (num%2==0) {
+            contadorPares++;
+        }else{
+            contadorImpares++;
+        }
+    }
+
+    document.write("Pares: " + contadorPares + "<br>");
+    document.write("Impares: " + contadorImpares);
+
+</script>
