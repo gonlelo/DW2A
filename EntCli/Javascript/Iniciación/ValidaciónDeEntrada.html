@@ -1,0 +1,16 @@
+<!--Esto se puede añadir a cualquiera de los ejercicios ajustando los parámetros necesarios-->
+
+<!-- Validación de entrada para números entre 0 y 10 EN CHROME CUANDO RECARGAS SALE LA PRIMERA ALERTA NO SE PORQUE-->
+<script>
+    let variable;
+    do {
+        variable = parseFloat(prompt("Introduce un número entre 0 y 10"));
+        if (isNaN(variable)) {
+            alert("El valor introducido debe ser un número");
+        } else if (variable <= 0 || variable >= 10) {
+            alert("El número introducido debe estar entre 0 y 10");
+        }
+    } while (isNaN(variable) || variable <= 0 || variable >= 10);
+    
+    document.write(variable);
+</script>

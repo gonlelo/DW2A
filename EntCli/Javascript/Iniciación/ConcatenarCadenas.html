@@ -1,0 +1,16 @@
+<script>
+let cadena= "";
+while (true){
+    cadenaAux=prompt("Escribe cosas y te las junto hasta que pulses cancelar");
+    if (cadenaAux == null) {
+        break;
+    }
+    if (cadenaAux != ""){
+    cadena += cadenaAux + " - ";
+    }
+}
+
+cadena = cadena.slice (0 , -2);
+document.write(cadena);
+
+</script>
