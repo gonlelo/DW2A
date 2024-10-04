@@ -6,8 +6,8 @@
         
     <h1>Procesa formulario</h1>
 <?php
-    if (isset($_GET[num1]) && isset($_GET[num2])){
-        if (is_numeric(num1) && is_numeric(num2)) {
+    if (isset($_GET["num1"]) && isset($_GET["num2"])){
+        if (is_numeric($_GET["num1"]) && is_numeric($_GET["num2"])) {
             $suma=$_GET["num1"]+$_GET["num2"];
             echo "La suma de " . $_GET["num1"]. " y " . $_GET["num2"] . " es " . $suma;
         }else {
