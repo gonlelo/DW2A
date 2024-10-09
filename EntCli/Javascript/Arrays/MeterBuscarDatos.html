@@ -1,0 +1,45 @@
+<script>
+function solicitarDatos() {
+    let array = [];
+    let input;
+  
+    while (true) {
+      input = prompt("Introduce un dato");
+      if (input == null) {
+        break;
+    }
+      array.push(input);
+    }
+  
+    return array;
+  }
+  
+  function buscarDatos(array, elemento) {
+    let posiciones = [];
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] === elemento) {
+        posiciones.push(i);
+      }
+    }
+    return posiciones;
+  }
+  let array = solicitarDatos();
+
+  do {
+    
+    let elemento = prompt("Introduce el elemento que quieres buscar:");
+    let resultado = buscarDatos(array, elemento);
+    
+    if (resultado.length > 0) {
+        alert(`El elemento "${elemento}" se encuentra en las posiciones: ${resultado.join(", ")}`);
+        let bucle = confirm("¿Desea continuar?");
+        if (bucle !== true) {
+            break;
+        }
+    } else {
+        alert(`El elemento "${elemento}" no se encuentra en el array.`);
+    }
+        
+  } while (true);
+//HECHO CON CHATGPT; NO FUNCIONA DEL TODO
+  </script>
