@@ -31,9 +31,9 @@ Tipos de peticiones: GET, POST, PUT, DELETE...
 - **docker logs [nombre_contenedor]** Mostrar logs del contenedor.
 - **docker rm [nombre_contenedor]** Elimina el contenedor.
 - **docker images** Lista todas las imagenes disponibles.
-- **docker build [archivo]** Construye una imagen a partir de un archivo. Para buscar el archivo Dockerfile (el nombre que se usa normalmente por convenio) se escribe **docker build .**
+- **docker build [archivo]** Construye una imagen a partir de un archivo. Para usar el archivo Dockerfile (el nombre que se usa normalmente por convenio) se escribe **docker build .** (Nótese el punto).
     - **docker build -t [nombre_imagen] [archivo]** Con -t (de tag) le pones el nombre que quieras a la imagen que estás creando.
-- **docker rmi [nombre_image]** Elimina una imagen.
+- **docker rmi [nombre_imagen]** Elimina una imagen.
 - **docker exec [comando]** Ejecuta un comando dentro de un contenedor (ESTE ESTÁ MAL FALTAN COSAS)
 - **docker inspect [nombre_contenedor]** Muestra mucha información de un contenedor.
 ### Programación en Docker
@@ -42,3 +42,18 @@ El archivo se llamará Dockerfile
 - **RUN [comando]** Ejecuta comandos dentro de la imagen (por ejemplo "apt update")
 - **CMD ["comando", "flags"]** Indica el comando que se ejecuta primero al crearse el contenedor. Este comando le da sentido al resto del Dockerfile. Siempre va último.
 - **EXPOSE [numero_puerto]** Especifica el número de puerto que va a usar la imagen.
+
+### Ficheros
+La gran mayoría de ficheros de configuración de Apache están en **/etc/apache2**
+Los logs se almacenan casi siempre en **/var/log/apache2/...**. Para saber la dirección exacta hay que buscar la variable de entorno que la almacena.
+- **etc/apache2/envvars** - Aquí se almacenan las variables de entorno.
+- **etc/apache2/apache2.conf** - Fichero de configuración principal.
+- **etc/apache2/sites-available** - Aquí se encuentran las páginas disponibles.
+- **etc/apache2/sites-enabled** - Aquí se encuentran las páginas activas.
+
+#### Comandos Apache
+- **a2enmod [nombre_mod]** Activa un mod, por ejemplo php.
+- **a2dismod [nombre_mod]** Desactiva un mod.
+- **a2ensite [nombre_sitio]** Activa un sitio web. (Se va a etc/apache2/sites-enabled)
+- **a2dissite [nombre_sitio]** Desactiva un sitio web. (Se va a etc/apache2/sites-available)
+- **systemctl reload apache2**
