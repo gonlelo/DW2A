@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>moverdiv</title>
+    <style>
+        div{
+            border: 50px solid brown;
+            border-radius: 10px;
+            position: absolute;
+            top: auto;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div2"><img src="https://media.tenor.com/Wfiv1gPp-4wAAAAM/caminar-walk.gif" alt=""></div><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div id="div1"><img src="https://media.tenor.com/Wfiv1gPp-4wAAAAM/caminar-walk.gif" alt=""></div><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div><img src="https://media.tenor.com/Wfiv1gPp-4wAAAAM/caminar-walk.gif" alt=""></div><br><br><br><br><br><br><br><br><br><br><br><br>
+    <script>
+        let div = document.querySelector('div');
+        function moverdiv() {
+        if(parseInt(div1.style.left)>=(window.innerWidth-parseInt(div1.offsetWidth))){
+            div1.style.left = 0;
+            div2.style.left = 0;
+        }else{
+            div1.style.left=(parseInt(div1.style.left) || 0)+1+'px';
+            div2.style.left=(parseInt(div2.style.left) || 0)+1+'px';
+        }
+    }
+
+setInterval(moverdiv, 0.001);
+
+    </script>
+</body>
+</html>
