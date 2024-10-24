@@ -23,6 +23,9 @@
         foreach($resultado as $fila) {
             echo $fila['Codigo'] ." " . $fila['Nombre']." " . $fila['Rol']." " . $fila['Clave'];
         }
+        if (!isset($fila['Código'])) {
+            echo "No hay ningún usuario con este código";
+        }
     }
 ?>
 </body>
