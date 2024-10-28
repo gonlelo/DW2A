@@ -70,7 +70,7 @@ Los logs se almacenan casi siempre en **/var/log/apache2/...**. Para saber la di
         - **ServerName [nombre_web_deseado]** Por ejemplo **web1.io**
         - **ServerAlias [alias_deseado]** **Por ejemplo www.web1.io**
         - **Errorlog [ruta_logs]** Indica dónde se deben guardar los logs y errores de la web. **Por ejemplo &dollar;{APACHE_LOG_DIR}/web3.error.log** En este caso &dollar;{APACHE_LOG_DIR} es la variable de entorno de apache que guarda el directorio de los logs (y que podemos cambiar en envvar) y /web3.error.log indica el fichero en el que se almacenarán.
-2. En **/etc/apache2/ports.con**f** nos aseguramos de que el servidor esté escuchando el puerto que hemos asignado al principio del documento. Si no, añadimos **Listen [puerto_deseado]** como ya está hecho con el 80 (predeterminado). 
+2. En **/etc/apache2/ports.conf** nos aseguramos de que el servidor esté escuchando el puerto que hemos asignado al principio del documento. Si no, añadimos **Listen [puerto_deseado]** como ya está hecho con el 80 (predeterminado). 
 3. Crear un directorio en **/var/www/** con el mismo nombre que hayamos especificado en **DocumentRoot**.
 4. Copiar/crear los documentos necesarios para nuestra página web en este directorio. Asegúrate de nombrar a la página principal index.html, index.php, default.html o algún otro nombre que el servidor reconozca como página predeterminada.
 5. En el **fichero /etc/hosts** asignamos a nuestra IP el nombre de dominio que hemos especificado en ServerName. Para esto añadimos una nueva línea con la IP local y el dominio. Por ejemplo:
