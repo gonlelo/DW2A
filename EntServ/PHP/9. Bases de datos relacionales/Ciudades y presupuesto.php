@@ -20,7 +20,7 @@
         foreach ($resultado as $fila) {
         $suma_presupuestos += $fila["presupuesto"];
         }
-            
+
         if (!isset($fila)) {
             echo "La ciudad " . $_POST["Ciudad"] . " no existe";
         } else {

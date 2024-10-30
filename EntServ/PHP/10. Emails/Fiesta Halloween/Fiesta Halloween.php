@@ -16,16 +16,17 @@
         <form method="post">
                 <?php
                 foreach ($resultado as $usu) {
-                    echo $usu['Nombre'] . '<input type="checkbox" name=' . $usu['Nombre'] . '><br>';
+                    echo $usu['Nombre'] . '<input type="checkbox" name=' . ucwords($usu['Nombre']) . '><br>';
                 }
                 ?>
             <input type="submit" value="Invitar" />
+
             <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $resultado = $bd->query("SELECT Nombre FROM usuarios");
                 foreach ($resultado as $usu) {
                     if (isset($_POST[$usu['Nombre']])){
-                    enviarEmail($usu['Nombre'] . "@empresa.com", "tuamigo@gmail.com", "TE INVITO A MI FIESTA DE HALLOWEEN", "Es mañana trae chocolate");
+                    enviarEmail($usu['Nombre'] . "@empresa.com", $usu['Nombre'], "tuamigo@gmail.com", "TE INVITO A MI FIESTA DE HALLOWEEN", "Es mañana trae chocolate");
                     }
                 
             } }?>

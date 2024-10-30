@@ -1,6 +1,6 @@
 1 <?php
 use PHPMailer\PHPMailer\PHPMailer;
-function enviarEmail($destino, $origen, $asunto, $mensaje){
+function enviarEmail($destino, $nombre, $origen, $asunto, $mensaje){
 
  	$mail = new PHPMailer();
  	$mail->IsSMTP();
@@ -25,7 +25,7 @@ function enviarEmail($destino, $origen, $asunto, $mensaje){
 	$mail->addAttachment("empleado.xsd");
 	// destinatario
 	$address = $destino;
-	$mail->AddAddress($address, "Test");
+	$mail->AddAddress($address, $nombre);
 	// enviar
 	$resul = $mail->Send();
 	if(!$resul) {
