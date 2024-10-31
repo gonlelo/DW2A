@@ -1,0 +1,21 @@
+
+header nav a{
+    padding-right: 0.5em  ;
+    float: right;
+}
+
+h1{
+    float:left;
+}
+h3{
+    border: 0.23em solid #66CC99;
+    border-radius: 0em 0em 0.4em 0.4em; 
+    background-color: #66CC99;
+
+}
+footer{
+    text-align: center;
+}
+span{
+    float:right;
+}
