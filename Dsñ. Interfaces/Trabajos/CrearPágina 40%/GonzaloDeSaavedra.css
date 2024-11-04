@@ -1,21 +1,66 @@
-
-header nav a{
-    padding-right: 0.5em  ;
-    float: right;
+a{
+    color: green;
+    text-decoration-style: dashed;
 }
-
 h1{
-    float:left;
+    text-shadow: 3px 3px grey; 
 }
+p:last-of-type{
+    font-style: italic;
+}
+.pie{
+    text-align: center;
+}
+.top {
+    border: 1px solid #66CC99;
+    border-radius: 15px;
+    box-shadow: 10px 5px 5px grey;
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, #41b17d 20%, rgba(0,212,255,0) 100%);      
+}
+
+.menu{
+    position: relative;
+    bottom: 60px; 
+    float: right;
+    padding: 1em;
+    border: 2px solid #389e6d;
+    text-decoration: none;
+    box-shadow: 0 4px 2px -2px gray;
+}
+.menu:hover{
+    position: relative;
+    bottom: 60px; 
+    float: right;
+    padding: 1em;
+    border: 2px solid #94e6be;
+    background-color: #4daf80;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 4px 2px -2px gray;
+}
+
+
 h3{
+    margin-top: 3em;
     border: 0.23em solid #66CC99;
     border-radius: 0em 0em 0.4em 0.4em; 
+    box-shadow: 10px 5px 5px grey;
     background-color: #66CC99;
 
 }
-footer{
-    text-align: center;
-}
 span{
-    float:right;
+    float: right;
+}
+
+.styles, .webs{
+    float: left;
+    margin-right: 3em;
+}
+
+#hrVerde{
+    border-top: 1px solid #41b17d;
+}
+li{
+    list-style-type:square
 }
