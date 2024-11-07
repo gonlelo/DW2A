@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `proyecto 1ª evaluación`
+-- Base de datos: `proyecto1ev`
 --
-CREATE DATABASE IF NOT EXISTS `Proyecto 1ª evaluación` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `Proyecto 1ª evaluación`;
+CREATE DATABASE IF NOT EXISTS `proyecto1ev` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `proyecto1ev`;
 -- --------------------------------------------------------
 
 --

@@ -7,9 +7,9 @@ function comprobar_usuario($nombre, $clave){
 					$bd_config["clave"]);
 
 	// Creo la sentencia SQL y ejecuto	
-	$ins = "select codRes, correo from empleados where correo = '$nombre' 
-			and contraseña = '$clave'";
-	$resul = $bd->query($ins);	
+	$query = "SELECT codRes, correo FROM empleados WHERE correo = '$nombre' 
+			AND contraseña = '$clave'";
+	$resul = $bd->query($query);	
 	if($resul->rowCount() === 1){		
 		return $resul->fetch();		
 	}else{
