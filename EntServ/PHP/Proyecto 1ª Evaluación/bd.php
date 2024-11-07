@@ -16,3 +16,16 @@ function comprobar_usuario($nombre, $clave){
 		return FALSE;
 	}
 }
+
+function tipo_de_usuario($email){
+	$letra = '@';
+	
+	// 1. Encontrar la posición de la letra en el string.
+	$posicion = strpos($email, $letra);
+	
+	if ($posicion !== false) {
+		// 2. Extraer la parte del string que sigue a la letra.
+		$subcadena = substr($email, $posicion + 1);
+}
+	return $subcadena;
+}

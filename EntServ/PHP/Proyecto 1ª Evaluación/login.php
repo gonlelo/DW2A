@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		session_start();
 		// $usu tiene campos correo y codRes, correo 
 		$_SESSION['usuario'] = $usu;
-		header("Location: opciones.php");
+		header("Location: principal.php");
 		return;
 	}	
 }
