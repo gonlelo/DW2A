@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `proyecto 1ª evaluación`
+-- Base de datos: `proyecto1ev`
 --
 CREATE DATABASE IF NOT EXISTS `proyecto1ev` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `proyecto1ev`;
@@ -27,8 +27,7 @@ USE `proyecto1ev`;
 --
 -- Estructura de tabla para la tabla `empleados`
 --
-DROP TABLE empleados;
-CREATE TABLE `empleados` (
+CREATE OR REPLACE TABLE `empleados` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
@@ -50,8 +49,7 @@ INSERT INTO `empleados` (`id`, `nombre`, `apellido`, `email`, `contraseña`) VAL
 --
 -- Estructura de tabla para la tabla `tickets`
 --
-DROP TABLE tickets;
-CREATE TABLE `tickets` (
+CREATE OR REPLACE TABLE `tickets` (
   `num` int(11) NOT NULL,
   `título` varchar(50) NOT NULL,
   `mensaje` varchar(500) NOT NULL,
