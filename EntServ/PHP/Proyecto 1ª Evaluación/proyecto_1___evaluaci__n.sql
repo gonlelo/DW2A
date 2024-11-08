@@ -28,7 +28,7 @@ USE `proyecto1ev`;
 -- Estructura de tabla para la tabla `empleados`
 --
 CREATE OR REPLACE TABLE `empleados` (
-  `id` int(11) NOT NULL,
+  `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -50,10 +50,10 @@ INSERT INTO `empleados` (`id`, `nombre`, `apellido`, `email`, `contraseña`) VAL
 -- Estructura de tabla para la tabla `tickets`
 --
 CREATE OR REPLACE TABLE `tickets` (
-  `num` int(11) NOT NULL,
+  `num` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `título` varchar(50) NOT NULL,
   `mensaje` varchar(500) NOT NULL,
-  `estado` varchar(11) NOT NULL,
+  `estado` varchar(11) NOT NULL DEFAULT 'creado',
   `autor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -72,14 +72,14 @@ INSERT INTO `tickets` (`num`, `título`, `mensaje`, `estado`, `autor`) VALUES
 -- Indices de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  ADD PRIMARY KEY (`id`),
+  -- ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indices de la tabla `tickets`
 --
-ALTER TABLE `tickets`
-  ADD PRIMARY KEY (`num`);
+-- ALTER TABLE `tickets`
+--   ADD PRIMARY KEY (`num`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
