@@ -14,6 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		// $usu tiene campos correo y codRes, correo 
 		$_SESSION['usuario'] = $usu;
 		$_SESSION['email'] = $_POST['usuario'];
+
+
 		header("Location: principal.php");
 		return;
 	}	
