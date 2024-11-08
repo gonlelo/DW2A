@@ -1,34 +1,39 @@
 <?php
-require_once 'bd.php';
-// Configuración de la base de datos
-$servername = "localhost";
-$username = "usuario";
-$password = "clave";
-$dbname = "tickets";
+include 'bd.php';
 
 // Conectar a la base de datos
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verificar la conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
-
+	$bd=crear_base();
+    
 // Obtener los datos del formulario
-$subject = $_POST['subject'];
-$description = $_POST['description'];
+$titulo = $_POST['titulo'];
+$mensaje = $_POST['mensaje'];
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($titulo)&&isset($mensaje)) {
+        
+   
+  
+
+//query para encontrar el id para pasarlo a la columna 'autor' de tickets
+$sqlId = "SELECT id FROM empleados WHERE email='".$_SESSION['email']."'";
+$resul = $bd->query($sqlID);
+foreach($resul as $fila){
+    $id=$fila['id'];
+}
 
 // Insertar el ticket en la base de datos
-$sql = "INSERT INTO tickets (subject, description) VALUES ('$subject', '$description')";
+$sql = "INSERT INTO tickets (título, mensaje, autor) VALUES ('$titulo', '$mensaje','$id')";
 
-if ($conn->query($sql) === TRUE) {
+if ($bd->query($sql) === TRUE) {
     echo "Ticket creado exitosamente.";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error de ticket";
+}
+$bd->exec($sql);
+// Cerrar la conexión
+}
 }
 
-// Cerrar la conexión
-$conn->close();
 ?>
 
 
@@ -40,14 +45,14 @@ $conn->close();
 </head>
 <body>
     <h2>Crear Nuevo Ticket</h2>
-    <form action="guardar_ticket.php" method="POST">
-        <label for="subject">Asunto:</label><br>
-        <input type="text" id="subject" name="subject" required><br><br>
+    <form method="POST">
+        Titulo:<br>
+        <input type="text" name="titulo" required><br><br>
 
-        <label for="description">Descripción:</label><br>
-        <textarea id="description" name="description" rows="4" required></textarea><br><br>
+        Mensaje:<br>
+        <textarea name="mensaje" rows="4" required></textarea><br><br>
 
-        <button type="submit">Enviar Ticket</button>
+        <input type="submit" value='Enviar Ticket'>
     </form>
 </body>
 </html>

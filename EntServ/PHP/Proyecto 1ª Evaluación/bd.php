@@ -1,4 +1,13 @@
 <?php
+function crear_base(){
+	// Incluyo los parámetros de conexión y creo el objeto PDO
+	include "configuracion_bd.php";
+	$bd = new PDO("mysql:dbname=".$bd_config["nombrebd"].";host=".$bd_config["ip"], 
+					$bd_config["usuario"],
+					$bd_config["clave"]);
+
+	return $bd;
+}
 function comprobar_usuario($nombre, $clave){
 	// Incluyo los parámetros de conexión y creo el objeto PDO
 	include "configuracion_bd.php";
@@ -18,6 +27,7 @@ function comprobar_usuario($nombre, $clave){
 }
 
 function tipo_de_usuario($email){
+	$subcadena='';
 	$letra = '@';
 	
 	// 1. Encontrar la posición de la letra en el string.
@@ -26,6 +36,11 @@ function tipo_de_usuario($email){
 	if ($posicion !== false) {
 		// 2. Extraer la parte del string que sigue a la letra.
 		$subcadena = substr($email, $posicion + 1);
+		
 }
-	return $subcadena;
+	if ($subcadena=='empresa.com') {
+		return 0;
+	}else if ($subcadena=='soporte.empresa.com') {
+		return 1;
+	}
 }

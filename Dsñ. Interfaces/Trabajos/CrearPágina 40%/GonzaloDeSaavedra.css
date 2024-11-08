@@ -3,25 +3,26 @@ a{
     text-decoration-style: dashed;
 }
 h1{
-    text-shadow: 3px 3px grey; 
+    text-shadow: 3px 3px grey;
 }
-p:last-of-type{
+hr+p{
     font-style: italic;
 }
 .pie{
     text-align: center;
+    clear: left;
 }
 .top {
     border: 1px solid #66CC99;
     border-radius: 15px;
     box-shadow: 10px 5px 5px grey;
     background: rgb(2,0,36);
-    background: linear-gradient(180deg, #41b17d 20%, rgba(0,212,255,0) 100%);      
+    background: linear-gradient(180deg, #41b17d 20%, rgba(0,212,255,0) 100%);
+    padding: 1em;      
 }
 
 .menu{
     position: relative;
-    bottom: 60px; 
     float: right;
     padding: 1em;
     border: 2px solid #389e6d;
@@ -30,7 +31,6 @@ p:last-of-type{
 }
 .menu:hover{
     position: relative;
-    bottom: 60px; 
     float: right;
     padding: 1em;
     border: 2px solid #94e6be;
@@ -60,6 +60,7 @@ span{
 
 #hrVerde{
     border-top: 1px solid #41b17d;
+    clear: left;
 }
 li{
     list-style-type:square
