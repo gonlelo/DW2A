@@ -49,8 +49,10 @@ function tipo_de_usuario($email){
 		
 }
 	if ($subcadena=='empresa.com') {
+		$_SESSION['tipo'] = 0;
 		return 0;
 	}else if ($subcadena=='soporte.empresa.com') {
+		$_SESSION['tipo'] = 1;
 		return 1;
 	}
 }

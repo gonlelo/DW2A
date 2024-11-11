@@ -2,10 +2,13 @@
 include 'bd.php';
 require_once 'sesiones.php';
 
-    comprobar_sesion();
-
+//Comprobar que la sesión esté iniciada y que el usuario sea un empleado.
+comprobar_sesion();
+if ($_SESSION['tipo'] != 0) {
+    header("Location: login.php?denegado=empleado");
+}
 // Conectar a la base de datos
-	$bd=crear_base();
+$bd=crear_base();
     
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -42,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <html>
         <head>
             <meta charset = "UTF-8">
-            <title>Página Principal</title>
+            <title>Vista empleado</title>
             <style>
                 div{
                     padding: 0.5em;
@@ -54,7 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </style>
         </head>
         <body>
-            <h1>Hola usuario</h1>		
+            <h1>Hola empleado</h1>
+            <a href="login.php" style="float: right">Cerrar Sesión </a>
             <a href="crearTicket.php">Crear ticket</a>
             <br><br>
             <h1>Tus tickets</h1>
