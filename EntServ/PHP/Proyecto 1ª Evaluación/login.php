@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					echo "<b><p style='color: gray'>Inicie sesión para continuar</p></b>";
 					break;
 				case 6:
-					echo "<b><p style='color: red'>El ticket que estás intentando acceder no es tuyo. </p></b>";
+					echo "<b><p style='color: red'>ACCESO DENEGADO. El ticket que estás intentando acceder no es tuyo. </p></b>";
 					break;
 			}
 		} 
