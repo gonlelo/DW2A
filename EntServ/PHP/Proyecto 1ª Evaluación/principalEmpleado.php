@@ -33,28 +33,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } 
 ?>
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Vista Empleado</title>
-        <style>
-            div {
-                padding: 0.5em;
-                border: 4px solid #CC99CC;
-                border-radius: 2em;
-                margin-bottom: 1em;
-                width: 60%;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Hola empleado</h1>
-        <a href="login.php" style="float: right">Cerrar Sesión</a>
-        <a href="crearTicket.php">Crear ticket</a>
-        <br><br>
-        <h1>Tus tickets</h1>
-        
+    
+    
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset = "UTF-8">
+            <title>Vista empleado</title>
+            <style>
+                div{
+                    padding: 0.5em;
+                    border: 4px solid #CC99CC;
+                    border-radius: 2em;
+                    margin-bottom: 1em;
+                    width: 60%;
+                }
+            </style>
+        </head>
+        <body>
+            <a href="login.php" style="float: right">Cerrar Sesión </a>
+            <h1>Hola empleado</h1>
+            <a href="crearTicket.php">Crear ticket</a>
+            <br><br>
+            <h1>Tus tickets</h1>
 <?php 
 // Conectar nuevamente a la base de datos para obtener los tickets del usuario
 $bd = crear_base();
