@@ -8,6 +8,8 @@ if ($_SESSION['tipo'] != 0) {
 }
 ?>
 
+
+
 <!----------------------------------------------------------------------------------------->
 
 <!DOCTYPE html>
@@ -23,7 +25,7 @@ if ($_SESSION['tipo'] != 0) {
         <input type="text" name="titulo" required><br><br>
 
         Mensaje:<br>
-        <textarea name="mensaje" rows="4"></textarea><br><br>
+        <textarea name="mensaje" rows="4" required></textarea><br><br>
 
         <input type="submit" value='Enviar Ticket'>
     </form>

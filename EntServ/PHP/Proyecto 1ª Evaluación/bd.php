@@ -56,3 +56,10 @@ function tipo_de_usuario($email){
 		return 1;
 	}
 }
+
+function borrarTicket($id){
+	$bd=crear_base();
+	$query = "DELETE FROM tickets WHERE num = $id";
+			$resul = $bd->query($query);
+	$bd = null;
+}

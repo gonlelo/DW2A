@@ -6,6 +6,11 @@ comprobar_sesion();
 if ($_SESSION['tipo'] != 1) {
     header("Location: login.php?denegado=técnico");
 }
+if ($_SERVER["REQUEST_METHOD"] == "POST")  {
+	if (isset($_POST['eliminar'])) {
+		borrarTicket($_POST['eliminar']);
+	}
+}
 ?>
 
 <!----------------------------------------------------------------------------------------->
@@ -32,27 +37,28 @@ if ($_SESSION['tipo'] != 1) {
 			$bd=crear_base();
 			
 			//Sacar todos los tickets
-			$query = "SELECT tck.num, tck.título, tck.mensaje, tck.estado, emp.nombre, emp.apellido FROM tickets tck LEFT JOIN empleados emp WHERE autor = {$id}";
+			$query = "SELECT tck.num, tck.título, tck.mensaje, tck.estado, emp.nombre, emp.apellido FROM tickets tck LEFT JOIN empleados emp ON tck.autor = emp.id;";
 			$resul = $bd->query($query);
 			if($resul->rowCount() >= 1){
 				foreach ($resul as $ticket) {
+					echo "<a href='ticket.php?id={$ticket['num']}' style='text-decoration: none;'>";
 					echo "<div>";
-					echo "<h1><b>#{$ticket['tck.num']}</b> {$ticket['tck.título']}</h1>";
-					echo "<p>{$ticket['tck.mensaje']}</p><br>";
-					echo "<p><b>{$ticket['tck.estado']}</b></p>";
-					echo "<p><b>{$ticket['tck.estado']}</b></p>";
-					echo "<p style='float: right'>Autor: {$ticket['emp.nombre']} {$ticket['emp.apellido']}</p>";
+					echo "<h1><b>#{$ticket['num']}</b> {$ticket['título']}</h1>";
+					echo "<p>{$ticket['mensaje']}</p><br>";
+					echo "<p><b>{$ticket['estado']}</b></p>";
+					echo "<form method='POST' style='display:inline;'> 
+					<input type='hidden' name='eliminar' value='{$ticket['num']}'>
+					<button type='submit' style='text-align: left'>Borrar</button>
+					</form>";
+					echo "<p style='text-align: right'>Autor: {$ticket['nombre']} {$ticket['apellido']}</p>";
 					echo "</div>";
+					echo "</a>";
 				}
 			}else {
 				echo "<p>Nadie ha creado ningún ticket. Disfruta de tu descanso</p>";
 			}
-
 			// Cerrar la conexión
 			$bd = null;
 		?>
 	</body>
 </html>
-$query = "SELECT tck.num, tck.título, tck.mensaje, tck.estado, emp.nombre, emp.apellido FROM tickets tck LEFT JOIN empleados emp WHERE autor = {$id}";
-echo "<p><b>{$ticket['tck.estado']}</b></p>";
-echo "<p style='float: right'>Autor: {$ticket['emp.nombre']} {$ticket['emp.apellido']}</p>";
