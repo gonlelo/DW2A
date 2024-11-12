@@ -1,0 +1,39 @@
+div.cabecera {
+	    width: 98%;
+        border: 2px solid red;
+        border-radius: 15px 0px;
+        box-shadow: 10px 5px 5px grey;
+        background: rgb(2,0,36);
+        background: linear-gradient(180deg, rgb(55, 55, 158) 10%, rgba(0,212,255,0) 100%);
+        padding: 1em ;      
+}
+.menu a{
+        color: black;
+        position: relative;
+        float: right;
+        padding: 1em;
+        border: 1px solid red;
+        text-decoration: none;
+        box-shadow: 0 4px 2px -2px gray;
+        font-family:sans-serif;
+}
+.menu a:hover{
+        position: relative;
+        float: right;
+        padding: 1em;
+        border: 1px solid red;
+        background-color: lightsalmon;
+        color: white;
+        text-decoration: none;
+        box-shadow: 0 4px 2px -2px gray;
+        font-family:sans-serif;
+ }
+.logo{
+    font-family:sans-serif;
+}
+.logo p{	
+    font-size: 2em;
+    text-shadow: 3px 3px grey;
+    margin-bottom: 0em;
+    
+}

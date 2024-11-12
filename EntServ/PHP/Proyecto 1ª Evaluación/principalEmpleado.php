@@ -64,14 +64,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h1>Tus tickets</h1>
 <?php 
 $bd=crear_base();
-//Sacar la id de la persona loggeada para mostrar solo sus tickets
+//Sacar la id de la persona logeada para mostrar solo sus tickets
 $sqlId = "SELECT id FROM empleados WHERE email='". $_SESSION['email'] ."'";
 $resul = $bd->query($sqlId);
 foreach($resul as $fila){
     $id=$fila['id'];
 }
 
-//Sacar todos los tickets cuyo autor sea la persona loggeada
+//Sacar todos los tickets cuyo autor sea la persona logeada
 $query = "SELECT num, título, mensaje, estado FROM tickets WHERE autor = {$id}";
 $resul = $bd->query($query);
 if($resul->rowCount() >= 1){

@@ -1,0 +1,31 @@
+
+html{
+    background-image: url(../img.png);
+}
+.div1{
+    float:left;
+    width: 25em;
+    background-color: rgba(141, 255, 47, 0.8);
+    margin-bottom: 1em;
+    padding: 1em;
+}
+body{
+    border: 2px solid black;
+    border-style: dotted;
+    padding: 1em;
+}
+.footer{
+    border: 2px solid green;
+    clear: left;
+    text-align:center;
+    background-color: white;
+    height: 5em;
+    background-image: url(../imagen.png);
+    background-repeat: no-repeat;
+    background-position: 0%;
+}
+span{
+    font-size: 2em;
+    font-weight: bolder;
+    color: green;
+}
