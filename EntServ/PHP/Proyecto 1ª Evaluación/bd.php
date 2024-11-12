@@ -9,6 +9,10 @@ function crear_base(){
 	return $bd;
 }
 function comprobar_usuario($nombre, $clave){
+	$comprobar = array(
+		"Usuario" => false,
+		"Contraseña" => false,
+	);
 	// Incluyo los parámetros de conexión y creo el objeto PDO
 	include "configuracion_bd.php";
 	$bd = new PDO("mysql:dbname=".$bd_config["nombrebd"].";host=".$bd_config["ip"], 
@@ -16,13 +20,19 @@ function comprobar_usuario($nombre, $clave){
 					$bd_config["clave"]);
 
 	// Creo la sentencia SQL y ejecuto	
-	$query = "SELECT contraseña, email FROM empleados WHERE email = '$nombre' 
-			AND contraseña = '$clave'";
-	$resul = $bd->query($query);	
-	if($resul->rowCount() === 1){		
-		return $resul->fetch();		
+	$query = "SELECT email FROM empleados WHERE email = '$nombre'";
+	$resul = $bd->query($query);
+	if($resul->rowCount() === 1){
+		$comprobar['Usuario'] = true;
+		$query = "SELECT contraseña, email FROM empleados WHERE email = '$nombre' AND contraseña = '$clave'";
+		$resul = $bd->query($query);
+		if($resul->rowCount() === 1){
+			return $resul->fetch();
+		}else {
+			return $comprobar;
+		}
 	}else{
-		return FALSE;
+		return $comprobar;
 	}
 }
 
@@ -39,8 +49,10 @@ function tipo_de_usuario($email){
 		
 }
 	if ($subcadena=='empresa.com') {
+		$_SESSION['tipo'] = 0;
 		return 0;
 	}else if ($subcadena=='soporte.empresa.com') {
+		$_SESSION['tipo'] = 1;
 		return 1;
 	}
 }

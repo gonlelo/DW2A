@@ -1,0 +1,31 @@
+<?php 
+require_once 'sesiones.php';
+
+//Comprobar que la sesión esté iniciada y que el usuario sea un empleado.
+comprobar_sesion();
+if ($_SESSION['tipo'] != 0) {
+    header("Location: login.php?denegado=empleado");
+}
+?>
+
+<!----------------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Nuevo Ticket</title>
+</head>
+<body>
+    <h2>Crear Nuevo Ticket</h2>
+    <form action="principalEmpleado.php" method="POST">
+        Titulo:<br>
+        <input type="text" name="titulo" required><br><br>
+
+        Mensaje:<br>
+        <textarea name="mensaje" rows="4"></textarea><br><br>
+
+        <input type="submit" value='Enviar Ticket'>
+    </form>
+</body>
+</html>
