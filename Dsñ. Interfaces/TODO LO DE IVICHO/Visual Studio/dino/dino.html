@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Dino Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+        }
+        #gameArea {
+            position: relative;
+            width: 800px;
+            height: 200px;
+            border: 2px solid black;
+            background-color: #ffffff;
+        }
+        #dino {
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+        }
+        .cactus {
+            position: absolute;
+            bottom: 0;
+            width: 20px;
+            height: 40px;
+            background-color: green;
+        }
+        .game-over {
+            font-size: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="gameArea">
+    <div id="dino"></div>
+</div>
+
+<script>
+    const dino = document.getElementById('dino');
+    const gameArea = document.getElementById('gameArea');
+    let isJumping = false;
+    let isGameOver = false;
+    let gravity = 1.0;
+
+    function jump() {
+        if (isJumping) return;
+        let position = 0;
+        let upInterval = setInterval(() => {
+            if (position >= 150) { // Altura máxima del salto aumentada
+                clearInterval(upInterval);
+                // Descendiendo
+                let downInterval = setInterval(() => {
+                    if (position <= 0) {
+                        clearInterval(downInterval);
+                        isJumping = false;
+                    }
+                    position -= 5;
+                    position = position * gravity;
+                    dino.style.bottom = position + 'px';
+                }, 20);
+            } else {
+                // Subiendo
+                position += 20;
+                dino.style.bottom = position + 'px';
+            }
+        }, 20);
+        isJumping = true;
+    }
+
+    function createCactus() {
+        const cactus = document.createElement('div');
+        cactus.classList.add('cactus');
+        gameArea.appendChild(cactus);
+        let cactusPosition = 800;
+        let randomTime = Math.random() * 3000;
+
+        cactus.style.left = cactusPosition + 'px';
+
+        let moveCactus = setInterval(() => {
+            if (isGameOver) {
+                clearInterval(moveCactus);
+                return;
+            }
+
+            cactusPosition -= 20;
+            cactus.style.left = cactusPosition + 'px';
+
+            // Colisión: Si el cactus toca al dino
+            if (cactusPosition > 50 && cactusPosition < 90 && parseInt(dino.style.bottom) <= 40) {
+                // Game Over
+                clearInterval(moveCactus);
+                isGameOver = true;
+                document.body.innerHTML = '<h1 class="game-over">Game Over</h1>';
+            }
+
+            // Si el cactus sale de la pantalla
+            if (cactusPosition < 0) {
+                clearInterval(moveCactus);
+                gameArea.removeChild(cactus);
+            }
+        }, 20);
+
+        if (!isGameOver) {
+            setTimeout(createCactus, randomTime);
+        }
+    }
+
+    createCactus();
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === ' ') {
+            jump();
+        }
+    });
+</script>
+
+</body>
+</html>

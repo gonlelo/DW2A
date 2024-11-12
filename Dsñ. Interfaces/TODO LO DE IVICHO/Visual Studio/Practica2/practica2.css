@@ -1,0 +1,5 @@
+li:first-child{ background-color: blue;}
+li:last-child{border: 2px  solid red;}
+li:only-child{font-style: italic;}
+li::first-letter{color: red;}
+

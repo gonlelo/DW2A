@@ -1,0 +1,11 @@
+* {
+    color: green;
+    font-weight: normal;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+h2,h3{color: aqua; align-items: center;}
+h1{color: blueviolet;}
+p span{
+    color: brown;
+}
