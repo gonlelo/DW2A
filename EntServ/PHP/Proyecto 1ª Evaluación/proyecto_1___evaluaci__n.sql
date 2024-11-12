@@ -42,7 +42,8 @@ CREATE OR REPLACE TABLE `empleados` (
 INSERT INTO `empleados` (`id`, `nombre`, `apellido`, `email`, `contraseña`) VALUES
 (1, 'Antonio', 'Luna', 'antonioluna@soporte.empresa.com', '1234'),
 (2, 'Ana', 'Puertas', 'anapuertas@soporte.empresa.com', '1234'),
-(3, 'Juan', 'Sevilla', 'juansevilla@empresa.com', '1234');
+(3, 'Juan', 'Sevilla', 'juansevilla@empresa.com', '1234'),
+(4, 'Macarena', 'Musgo', 'macarenamusgo@empresa.com', '1234');
 
 -- --------------------------------------------------------
 
