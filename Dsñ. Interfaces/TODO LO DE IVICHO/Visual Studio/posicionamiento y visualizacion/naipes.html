@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            background-color: green;
+            border-radius: 2em;
+            left: 25%;
+            width: 250px;
+            height: 250px;
+            position: relative;
+        }
+        img:hover{
+            z-index: 2;
+        }
+        div:active:has(:not(img:active)) {
+            visibility: hidden;
+        }
+        div:active:has(img:active) {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <h1>Escalera de color</h1>
+    <div> 
+        <img src="diamonds_10.gif" style="position: absolute; left: 3em; top:2em ; ">
+        <img src="diamonds_jack.gif" style="position: absolute; left: 4em; top:3em ; ">
+        <img src="diamonds_queen.gif" style="position: absolute; left: 5em; top:4em ; ">
+        <img src="diamonds_king.gif" style="position: absolute; left: 6em; top:5em ; ">
+        <img src="diamonds_ace.gif" style="position: absolute; left: 7em; top:6em ; ">
+    </div>
+</body>
+</html>

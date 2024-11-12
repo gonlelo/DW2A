@@ -1,0 +1,6 @@
+ tr{
+    background-color: yellow;
+}
+tr + tr {
+    background-color: red;
+} 
