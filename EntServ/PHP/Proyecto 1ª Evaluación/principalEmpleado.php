@@ -2,36 +2,40 @@
 include 'bd.php';
 require_once 'sesiones.php';
 
-// Comprobar que la sesión esté iniciada y que el usuario sea un empleado
 comprobar_sesion();
 if ($_SESSION['tipo'] != 0) {
     header("Location: login.php?denegado=empleado");
 }
-
 // Conectar a la base de datos
-$bd = crear_base();
+$bd=crear_base();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
     $titulo = $_POST['titulo'];
     $mensaje = $_POST['mensaje'];
-    $email = $_SESSION['email']; // Obtener el email del usuario de la sesión
-    
     if (isset($titulo) && isset($mensaje)) {
-        // Insertar el ticket en la base de datos usando el email en lugar del id
-        $query = "INSERT INTO tickets (título, mensaje, autor) VALUES ('$titulo', '$mensaje', '$email')";
+            
+        //query para encontrar el id para pasarlo a la columna 'autor' de tickets
+        $sqlId = "SELECT id FROM empleados WHERE email='". $_SESSION['email'] ."'";
+        $resul = $bd->query($sqlId);
+        foreach($resul as $fila){
+            $id=$fila['id'];
+        }
+
+        // Insertar el ticket en la base de datos
+        $query = "INSERT INTO tickets (título, mensaje, autor) VALUES ('$titulo', '$mensaje','$id')";
 
         if ($bd->exec($query) === 1) {
             echo "<h2><b><p style='color: green'>Ticket creado exitosamente.</p></b></h2>";
         } else {
-            echo "<p style='color: red'>Error creando ticket</p>";
+            //NO SE SI ESTO SE ACTIVA EN ALGUN MOMENTO HABRIA QUE TESTEARLO
+            echo "Error creando ticket";
         }
 
         // Cerrar la conexión
         $bd = null;
     }
-} 
-?>
+} ?>
 
     
     
@@ -51,21 +55,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </style>
         </head>
         <body>
-            <a href="login.php" style="float: right">Cerrar Sesión </a>
             <h1>Hola empleado</h1>
+            <a href="login.php" style="float: right">Cerrar Sesión </a>
             <a href="crearTicket.php">Crear ticket</a>
             <br><br>
             <h1>Tus tickets</h1>
 <?php 
-// Conectar nuevamente a la base de datos para obtener los tickets del usuario
-$bd = crear_base();
-$email = $_SESSION['email']; // Obtener el email del usuario de la sesión
+$bd=crear_base();
+//Sacar la id de la persona loggeada para mostrar solo sus tickets
+$sqlId = "SELECT id FROM empleados WHERE email='". $_SESSION['email'] ."'";
+$resul = $bd->query($sqlId);
+foreach($resul as $fila){
+    $id=$fila['id'];
+}
 
-// Consultar todos los tickets cuyo autor sea el email de la persona loggeada
-$query = "SELECT num, título, mensaje, estado FROM tickets WHERE autor = '$email'";
+//Sacar todos los tickets cuyo autor sea la persona loggeada
+$query = "SELECT num, título, mensaje, estado FROM tickets WHERE autor = {$id}";
 $resul = $bd->query($query);
-
-if ($resul && $resul->rowCount() >= 1) {
+if($resul->rowCount() >= 1){
     foreach ($resul as $ticket) {
         echo "<div>";
         echo "<h1><b>#{$ticket['num']}</b> {$ticket['título']}</h1>";
@@ -73,7 +80,7 @@ if ($resul && $resul->rowCount() >= 1) {
         echo "<p><b>{$ticket['estado']}</b></p>";
         echo "</div>";
     }
-} else {
+}else {
     echo "<p>No tienes tickets creados. Aquí se mostrarán los tickets que crees.</p>";
 }
 
@@ -81,5 +88,5 @@ if ($resul && $resul->rowCount() >= 1) {
 $bd = null;
 ?>
 
-    </body>
-</html>
+        </body>
+    </html>

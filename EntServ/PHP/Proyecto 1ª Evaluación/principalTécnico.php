@@ -15,11 +15,11 @@ $bd = crear_base(); // Assuming bd.php provides a function named crear_base()
 ?>
 
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset = "UTF-8">
-		<title>Vista Técnico</title>
-		<style>
+    <html>
+        <head>
+            <meta charset = "UTF-8">
+            <title>Vista tecnico</title>
+            <style>
                 div{
                     padding: 0.5em;
                     border: 4px solid #CC99CC;
