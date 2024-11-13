@@ -37,6 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if ($_GET['denegado'] == 'técnico') {
 			$err = 4;
 		}
+		if ($_GET['denegado'] == 'ticketajeno') {
+			$err = 6;
+		}
 	}
 	if(isset($_GET["redirigido"])){
 		$err = 5;
@@ -86,6 +89,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					break;
 				case 5:
 					echo "<b><p style='color: gray'>Inicie sesión para continuar</p></b>";
+					break;
+				case 6:
+					echo "<b><p style='color: red'>ACCESO DENEGADO. El ticket que estás intentando acceder no es tuyo. </p></b>";
 					break;
 			}
 		} 
