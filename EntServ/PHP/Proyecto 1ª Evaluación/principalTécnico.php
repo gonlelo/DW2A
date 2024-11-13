@@ -10,9 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")  {
 	if (isset($_POST['eliminar'])) {
 		borrarTicket($_POST['eliminar']);
 	}
-	if (isset($_POST['palabra'])) {
-		buscarTicket($_POST['palabra']);
-	}
+	
 }
 ?>
 
@@ -45,6 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")  {
 					<input type='submit' value='Buscar'></input>
 					</form>";
 			//Sacar todos los tickets
+			if (isset($_POST['palabra'])) {
+				buscarTicket($_POST['palabra']);
+			}else{
 			$query = "SELECT tck.num, tck.título, tck.mensaje, tck.estado, emp.nombre, emp.apellido FROM tickets tck LEFT JOIN empleados emp ON tck.autor = emp.id;";
 			$resul = $bd->query($query);
 			if($resul->rowCount() >= 1){
@@ -64,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")  {
 				}
 			}else {
 				echo "<p>No hay tickets disponibles. Disfruta de tu descanso</p>";
-			}
+			}}
 			// Cerrar la conexión
 			$bd = null;
 		?>

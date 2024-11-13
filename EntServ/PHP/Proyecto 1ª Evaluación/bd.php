@@ -67,7 +67,7 @@ function borrarTicket($id){
 function buscarTicket($palabra){
 	$bd=crear_base();
 	$query ="SELECT tck.num, tck.título, tck.mensaje, tck.estado, emp.nombre, emp.apellido FROM tickets tck LEFT JOIN empleados emp ON 
-	tck.autor = emp.id WHERE tck.título LIKE '%$palabra%' OR emp.nombre LIKE '%$palabra%' OR  tck.mensaje LIKE '%$palabra%' OR  emp.apellido LIKE '%$palabra%'";
+	tck.autor = emp.id WHERE tck.título LIKE '%$palabra%' OR emp.nombre LIKE '%$palabra%' OR  tck.mensaje LIKE '%$palabra%' OR  emp.apellido LIKE '%$palabra%' OR  tck.num LIKE '%$palabra%'";
 			
 			$resul = $bd->query($query);
 			foreach ($resul as $ticket) {
