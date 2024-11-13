@@ -2,12 +2,14 @@
 include 'bd.php';
 require_once 'sesiones.php';
 
+//Comprobar que la sesión esté iniciada y que el usuario sea un empleado.
 comprobar_sesion();
 if ($_SESSION['tipo'] != 0) {
     header("Location: login.php?denegado=empleado");
 }
 // Conectar a la base de datos
 $bd=crear_base();
+    
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
@@ -26,13 +28,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $query = "INSERT INTO tickets (título, mensaje, autor) VALUES ('$titulo', '$mensaje','$id')";
 
         if ($bd->exec($query) === 1) {
-            echo "<h2><b><p style='color: green'>Ticket creado exitosamente.</p></b></h2>";
+            // Redirigir al usuario para evitar el reenvío de formulario
+            header("Location: principalEmpleado.php?ticket_creado=1");
+    exit;
         } else {
-            //NO SE SI ESTO SE ACTIVA EN ALGUN MOMENTO HABRIA QUE TESTEARLO
             echo "Error creando ticket";
         }
 
+
         // Cerrar la conexión
+        
         $bd = null;
     }
 } ?>
@@ -70,7 +75,7 @@ foreach($resul as $fila){
 }
 
 //Sacar todos los tickets cuyo autor sea la persona loggeada
-$query = "SELECT num, título, mensaje, estado FROM tickets WHERE autor = {$id}";
+$query = "SELECT num, título, mensaje, estado, fecha FROM tickets WHERE autor = {$id} ORDER BY fecha DESC";
 $resul = $bd->query($query);
 if($resul->rowCount() >= 1){
     foreach ($resul as $ticket) {
