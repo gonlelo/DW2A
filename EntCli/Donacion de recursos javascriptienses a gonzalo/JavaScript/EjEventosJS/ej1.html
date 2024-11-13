@@ -1,0 +1,28 @@
+<!--Aparecen diferentes mensajes de bienvenida al pulsar el botón y al pulsar el enlace -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ej1</title>
+   
+</head>
+<body>
+    <header>
+        Esto es una cabecera
+    </header>
+    <p>Y esto es informacion</p>
+    <button>Pulsa</button> <br>
+    <a href="">pulsa aqui</a>
+   <script>
+    document.querySelector('button').addEventListener('click',function(){
+        alert('Bienvenido a mi sitio web');
+    })
+    document.querySelector('a').addEventListener('click', function(){
+        alert('Hola');
+    })
+  
+      
+ </script>
+</body>
+</html>

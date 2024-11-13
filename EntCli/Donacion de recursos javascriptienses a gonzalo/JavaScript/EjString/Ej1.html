@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let letras=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z'];
+        let contador=[];
+        function contarCaracteres(frase){
+            letras.forEach((element, index) => {   
+                    contador[index]=0;
+            });
+            letras.forEach((element, index) => {
+                contador[element]=0;
+                for(let i=0; i<frase.length;i++){
+                    if (frase.charAt(i)==element) {
+                    contador[index]++;
+                }
+                }
+            });
+            
+        }
+    </script>
+</head>
+<body>
+    <script> 
+        frase=prompt('Escribe la frase');
+        contarCaracteres(frase.toLowerCase());
+        letras.forEach((element, index) => {
+            document.write(element+'= '+contador[index]+'<br>');
+        });
+       
+    </script>
+</body>
+</html>

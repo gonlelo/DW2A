@@ -1,0 +1,62 @@
+<!-- Desarrollar un programa que permita introducir edades en un array de 10 elementos
+llamado ‘edades’ y posteriormente muestre:
+ La suma de todos los elementos del array
+ Cantidad de mayores de edad
+Para ello, escribir 3 funciones (cargarArray, sumaArray y cantidadMayoresEdad) de forma
+que las llamadas a dichas funciones sean como se indica a continuación:
+cargarArray(edades);
+document.write("Suma de edades:"+sumaArray(edades));
+ document.write("<br>Número de mayores de edad:"+cantidadMayoresEdad(edades)); -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Operadores</title>
+     <script>
+ 
+ function cargarArray(array){
+     
+     for (var i = 0; i < 10; i++) {
+         num1 = parseInt(prompt("Ingrese el "+(i+1)+" número"));
+             array.push(num1);
+     }
+ }
+ function calcularSuma(array){
+     var suma=0;
+     for (var i = 0; i < array.length; i++) {
+             suma += array[i];
+     }
+     document.write("Suma de edades:"+suma+"<br>");
+     
+ }
+ function calculaMayores(array){
+    let mayores=0;
+    for (var i = 0; i < array.length; i++) {
+            if (array[i]>=18) {
+                mayores++;
+            }
+     }
+     document.write("Mayores de edad:"+mayores+"<br>");
+ }
+ function muestraArray(array){
+     muestra = array.join(',')
+     document.getElementById("resultado").innerHTML +=muestra+"<br> ";
+ }
+     </script>
+ </head>
+ <body>
+     <p id="resultado"></p>
+     <script>
+     var arrayNums = [];
+      cargarArray(arrayNums);
+       muestraArray(arrayNums);
+      calcularSuma(arrayNums);
+      calculaMayores(arrayNums);
+     
+ 
+     </script>
+ </body>
+ </html>
+ 

@@ -1,0 +1,37 @@
+<!-- Crear un array de 10 elementos con valores aleatorios comprendidos entre 0 y 1000.
+Posteriormente muestra el índice y contenido de cada posición del array utilizando el método
+ForEach. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operadores</title>
+    <script>
+
+function generarArray(){
+    let array = [];
+    for (let i = 0; i < 10; i++) {
+        array[i]=Math.trunc(Math.random()*1000) ;
+            }
+            return array;
+}
+function mostrarArray(array){
+            array.forEach((elemento,index) =>{
+                  document.write('Posicion '+(index+1)+' = '+elemento+'<br>');
+            });
+               
+         
+           
+}
+
+    </script>
+</head>
+<body>
+    <script>
+     let arrayGenerado = generarArray();
+     mostrarArray(arrayGenerado);
+    </script>
+</body>
+</html>

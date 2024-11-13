@@ -1,0 +1,45 @@
+<!-- Desarrollar un script que valide la entrada de un campo de un formulario a base de
+recorrer cada una de las posiciones de la cadena introducida por el usuario,
+comprobando que todo lo introducido pertenece al conjunto de caracteres válidos
+(dígitos del 0 al 9). -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    
+        function Comprobar(digitos){
+            let errores='Error en la posicion';
+            let alerta='';
+            for (let i = 0; i < digitos.length; i++) {
+                if(isNaN(digitos.charAt(i)) ){
+                    errores+=' '+i;
+                }
+            }
+            if (errores=='Error en la posicion') {
+                alerta='No hay errores';
+            }else{
+                alerta=errores;
+            }
+            return alerta;
+        }
+    </script>
+</head>
+<body>
+    <h1>Numeros enteros</h1>    
+    Cadena: <input type="text" id="numeros">
+    <br><br>
+    <button>Comprobar</button>
+    <script> 
+        document.querySelector('button').addEventListener('click',function(){
+        alert(Comprobar(document.getElementById('numeros').value));
+        
+    })
+        
+       
+       
+    </script>
+</body>
+</html>

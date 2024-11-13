@@ -1,0 +1,28 @@
+<!-- Solicita una cadena al usuario, y muestra la longitud de dicha cadena y la cadena sin
+espacios en blanco, así como dicho tamaño. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function longitud(frase){
+            return frase.length;
+        }
+        function sinEspacios(frase){
+            return frase.replace(/\s/g,'');
+        }
+    </script>
+</head>
+<body>
+    <script> 
+        frase=prompt('Escribe la frase');
+        document.write(frase+'<br>');
+        document.write(longitud(frase)+'<br>');
+        document.write(sinEspacios(frase)+'<br>');
+        document.write(longitud(sinEspacios(frase))+'<br>');
+    </script>
+</body>
+</html>

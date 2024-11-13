@@ -1,0 +1,52 @@
+<!--Si se teclea algún valor distinto a: R, A, Y ó V se definirán estos colores: para la tabla
+ligthgrey y para el texto black.
+Los colores se pedirán mediante una orden prompt(). Si no se elige uno de los colores se
+tomará un valor por defecto. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ej8</title>
+   <style>
+    
+    td{
+        border: 2px solid; 
+    }
+   </style>
+   <script>
+   
+   </script>
+</head>
+<body>
+    <table>
+        <td id="texto"> TEXTO CON COLOR </td>
+    </table>
+   <script>
+        let colorTabla = prompt("¿Qué color deseas para la tabla? (R, A, Y, V)");
+        if(colorTabla=='R'){
+         document.getElementById('texto').style.backgroundColor='hotpink';
+      }else if(colorTabla=='A'){
+        document.getElementById('texto').style.backgroundColor='lightblue';
+      }else if(colorTabla=='Y'){
+        document.getElementById('texto').style.backgroundColor='lightyellow';
+      }else if(colorTabla=='V'){
+        document.getElementById('texto').style.backgroundColor='lightgreen';
+      }else{
+        document.getElementById('texto').style.backgroundColor='lightgrey';
+      }
+        let colorLetra = prompt("¿Qué color deseas para la letra? (R, A, Y, V)");
+        if(colorLetra=='R'){
+            document.getElementById('texto').style.color='red';
+      }else if(colorLetra=='A'){
+        document.getElementById('texto').style.color='blue';
+      }else if(colorLetra=='Y'){
+        document.getElementById('texto').style.color='yellow';
+      }else if(colorLetra=='V'){
+        document.getElementById('texto').style.color='green';
+      }else{
+        document.getElementById('texto').style.color='black';
+      }
+ </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!-- Crear un array de 10 elementos con valores aleatorios comprendidos entre 0 y 1000. Posteriormente
+buscar el elemento menor y luego generar otro array a partir de dicha posición hasta el final. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operadores</title>
+    <script>
+
+function cargarArray(array){
+    
+    for (var i = 0; i < 10; i++) {
+            array.push(Math.random()*1000);  
+    }
+}
+function elementoMenor(array){
+    let menor=Math.min(...array);
+    document.write("Menor: "+menor+"<br>");
+    for (var i = 0; i < array.length; i++) {
+            if(array[i]==menor){
+                array = array.slice(i,array.length)
+            }
+    }
+    document.write("Array nuevo: "+array+"<br>");
+}
+
+function muestraArray(array){
+    muestra = array.join(', ')
+    document.getElementById("resultado").innerHTML +=muestra+"<br> ";
+}
+    </script>
+</head>
+<body>
+    <p id="resultado"></p>
+    <script>
+    var arrayNums = [];
+     cargarArray(arrayNums);
+      muestraArray(arrayNums);
+     elementoMenor(arrayNums);
+    
+
+    </script>
+</body>
+</html>

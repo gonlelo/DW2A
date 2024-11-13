@@ -1,0 +1,29 @@
+<!--Página que muestra una caja de texto donde escribimos la edad de una persona, y
+cuando pierde el foco dicha caja, muestra si a esa persona le corresponde Abono joven,
+Abono normal o Abono 3ª edad (<=18, >=65). -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ej3</title>
+   
+</head>
+<body>
+    <textarea name="edad" id=""></textarea>
+   <script>
+    document.querySelector('textarea').addEventListener('blur',function(){
+        if(this.value<=18){
+            alert('Abono joven');
+        }else if(this.value>=65){
+            alert('Abono 3ª edad')
+        }else if(this.value<65 && this.value>18){
+            alert('Abono normal');
+        }
+    })
+  
+  
+      
+ </script>
+</body>
+</html>

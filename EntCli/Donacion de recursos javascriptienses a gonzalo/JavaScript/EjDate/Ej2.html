@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  
+    <h1>Numero de dias que faltan hasta...</h1>
+    Dia: <input type="text" id="dia">
+    Mes: <input type="text" id="mes">
+    Año: <input type="text" id="año">
+    <button>Calcular</button>
+    <script>
+        let actual= new Date();
+        document.querySelector('button').addEventListener('click',function(){
+        let dia= document.getElementById('dia').value;
+        let mes= document.getElementById('mes').value-1;
+        let año= document.getElementById('año').value;
+        if (dia<1||dia>31||mes<0||mes>11||año<0) {
+            alert('Introduce una fecha correcta');
+        }else{
+        let introducida = new Date(año,mes,dia)
+        let diferenciams=actual-introducida;
+        let diferenciaDias = diferenciams/(1000 * 60 * 60 * 24);
+        alert('Días de diferencia: ' + Math.abs(Math.floor(diferenciaDias)) );}
+    });
+    </script>
+</body>
+</html>

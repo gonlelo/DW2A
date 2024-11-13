@@ -1,0 +1,95 @@
+<!-- Al cargarse crea una ventana de tamaño 200x200 centrada tanto horizontal como
+verticalmente en la pantalla y que tiene dos botones (“Maximizar” y “Minimizar”). El
+primero maximiza el tamaño de la ventana y el segundo vuelve a establecerle el tamaño
+original. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let myWindow;
+        let myImage;
+        function openCenteredWindow() {
+            if (myWindow&& !myWindow.closed) {
+           
+        }else{
+            let altura = screen.height/2-250;
+         let anchura = screen.width/2-250;
+         myWindow =  window.open('', '', 'width=500, height=500, top='+altura+', left='+anchura);
+        }
+         
+        myWindow.document.write(`
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil dolore itaque facere eligendi laudantium soluta, minima <br>
+        ab rem quam cupiditate voluptate inventore error perspiciatis fuga quisquam earum sed qui mollitia!Loremlore <br>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi qui odit eos illo laborum quam, adipisci laboriosam hic  <br>
+        nobis amet veritatis sunt, omnis ad tenetur! Provident itaque illo deserunt repudiandae! Lorem ipsum dolor sit amet consectetur  <br>
+        adipisicing elit. Earum, totam dolores exercitationem mollitia facere ullam distinctio ducimus ipsam, dignissimos, iste reprehenderit  <br>
+        temporibus dolorem! Quisquam odio excepturi commodi sed dolorem dicta? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti  <br>
+        aperiam nihil non hic nostrum excepturi maxime esse consequuntur at cumque, amet adipisci. Obcaecati facere cupiditate modi sequi deserunt  <br>
+        doloribus quasi. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa vitae temporibus incidunt voluptates itaque. Quibusdam non hic  <br>
+        esse asperiores, accusantium nisi quo neque repudiandae minus, sequi aperiam alias similique eligendi? <br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae fugit, exercitationem corrupti ratione quos ipsa consectetur delectus laudantium <br>
+        dolorum fugiat necessitatibus, soluta, a totam ullam quod vel! Quae, molestiae vitae! Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
+        Eaque natus expedita, id sed non atque! Hic, dignissimos sed fugit tenetur sunt assumenda iure, corrupti quidem omnis deserunt consequuntur explicabo possimus? <br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque perferendis est, esse voluptate porro aliquam ipsa, rerum necessitatibus nisi quos sit. <br>
+        Neque, modi. Excepturi maxime nostrum ab qui natus incidunt? Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, ipsam! Illum nemo, officiis <br>
+        dicta, voluptatum accusamus eos et, iste asperiores aspernatur placeat commodi nisi quaerat. Assumenda magni suscipit repellat illo. Lorem ipsum dolor, sit <br>
+        amet consectetur adipisicing elit. Sequi eum distinctio cumque nobis accusantium possimus velit, cupiditate voluptate, aliquid ex doloribus ut! Omnis porro <br>
+        ullam iste ut amet quaerat quis! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae explicabo saepe eius! Voluptates consequuntur eligendi,<br>
+        magni ut fuga deserunt in quos ratione nemo repudiandae quibusdam consectetur culpa nihil optio suscipit? Lorem ipsum dolor sit amet consectetur adipisicing <br>
+         elit. Sequi itaque neque nihil fugiat veniam vitae placeat tenetur, eos eveniet! Quod ipsum aut consequuntur reiciendis sed, possimus excepturi exercitationem <br>
+        delectus laboriosam!
+        </p>
+        `);
+        }
+        function scrollDown(){
+            myWindow.scrollBy(0,myWindow.innerHeight);
+        }
+        function scrollUp(){
+            myWindow.scrollBy(0,(0-myWindow.innerHeight));
+        }
+        function openImageWindow(){
+            
+            if (myImage===!closed) {
+                
+            }else{
+                let altura = screen.height/2+250;
+                let anchura = screen.width/2+250;
+                myImage =  window.open('', '', 'width=400, height=200, top='+altura+', left='+anchura);
+                myImage.document.write(`
+                <img src="https://www.copiamuseo.com/wp-content/uploads/2024/02/gatos.jpg" alt="" width="400">
+                `)
+            }
+        }
+        function closeImageWindow(){
+            if (myImage===closed) {
+                
+            }else{
+                myImage.close();
+            }
+        }
+        function visualizarHora(){
+            let fecha = new Date();
+            let hora = fecha.getHours();
+            let minutos = fecha.getMinutes();
+            document.body.insertAdjacentHTML('beforeend', '<textarea>Hora: ' + hora + ':' + minutos + '</textarea>');
+        }
+        function quitarHora(){
+            document.querySelector('textarea').remove();
+        }
+    </script>
+</head>
+<body onload="openCenteredWindow()">
+    <h1>Ejercicio ventanas</h1>
+    
+    Para bajar al final de la ventana - <a href="#" onclick="scrollDown(); return false">click sobre este texto</a><br><br><br>
+    Para abrir una ventana con imagen - <a href="#" onclick="openImageWindow(); return false">click sobre este texto</a><br><br><br>
+    Para cerrar la ventana de la imagen - <a href="#" onclick="closeImageWindow(); return false">click sobre este texto</a><br><br><br>
+    Para visualizar la hora en una caja de texto - <a href="#" onclick="visualizarHora(); return false">click sobre este texto</a><br><br><br>
+    Para cerrar visualizar la hora - <a href="#" onclick="quitarHora(); return false">click sobre este texto</a><br><br><br>
+    Para subir al principio de la ventana - <a href="#" onclick="scrollUp(); return false">click sobre este texto</a><br><br><br>
+    
+</body>
+</html>
