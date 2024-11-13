@@ -2,17 +2,21 @@
 require_once 'bd.php';
 require_once 'sesiones.php';
 
-if (!isset($_GET['id'])) {
+if (!isset($_GET['idticket'])) {
     header("Location: principalTécnico.php");
 }
 
 $bd=crear_base();
-$query="SELECT id FROM empleados WHERE id= (SELECT autor FROM tickets WHERE num = {$_GET['id']});";
-$idautor= $bd->query($query);
+$query="SELECT id FROM empleados WHERE id= (SELECT autor FROM tickets WHERE num = {$_GET['idticket']});";
+$resul = $bd->query($query);
+foreach ($resul as $fila) {
+    $idautor = $fila['id'];
+}
 
-
-if ($_SESSION['tipo'] != 0 || $_SESSION['usuario']['id'] != $idautor) {
+if ($_SESSION['tipo'] != 1 && $_SESSION['usuario']['id'] != $idautor){
     header("Location: login.php?denegado=ticketajeno");
+}else {
+    echo "holaaa";
 }
 ?>
 

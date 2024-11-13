@@ -63,3 +63,29 @@ function borrarTicket($id){
 			$resul = $bd->query($query);
 	$bd = null;
 }
+
+function buscarTicket($palabra){
+	$bd=crear_base();
+	$query ="SELECT tck.num, tck.título, tck.mensaje, tck.estado, emp.nombre, emp.apellido FROM tickets tck LEFT JOIN empleados emp ON 
+	tck.autor = emp.id WHERE tck.título LIKE '%$palabra%' OR emp.nombre LIKE '%$palabra%' OR  tck.mensaje LIKE '%$palabra%' OR  emp.apellido LIKE '%$palabra%'";
+			
+			$resul = $bd->query($query);
+			foreach ($resul as $ticket) {
+
+						echo "<a href='ticket.php?idticket={$ticket['num']}' style='text-decoration: none;'>";
+						echo "<div style='float: left; clear: left'>";
+						echo "<h1><b>#{$ticket['num']}</b> {$ticket['título']}</h1>";
+						echo "<p>{$ticket['mensaje']}</p><br>";
+						echo "<p><b>{$ticket['estado']}</b></p>";
+						echo "<form method='POST' style='display:inline;'> 
+						<input type='hidden' name='eliminar' value='{$ticket['num']}'>
+						<button type='submit' style='text-align: left'>Borrar</button>
+						</form>";
+						echo "<i><p style='text-align: right'>De: {$ticket['nombre']} {$ticket['apellido']}</p></i>";
+						echo "</div>";
+						echo "</a>";
+					}
+				
+		
+	$bd = null;
+}

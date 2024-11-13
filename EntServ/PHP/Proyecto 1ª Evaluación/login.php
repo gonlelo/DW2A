@@ -17,10 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$err = 2;
 	}else{
 		session_start();
-		// $usu tiene campos correo y codRes, correo
-		// ??? preguntar a ivicho
-		$_SESSION['usuario'] = $usu;
 		$_SESSION['email'] = $_POST['usuario'];
+		//Aquí se incluyen todos los datos del usuario actual
+		$_SESSION['usuario'] = datos_sesion($_POST['usuario']);
+
 
 		if (tipo_de_usuario($_SESSION['email'])==1) {
 			header("Location: principalTécnico.php");

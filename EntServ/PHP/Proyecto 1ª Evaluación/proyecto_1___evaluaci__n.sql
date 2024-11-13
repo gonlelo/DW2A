@@ -55,8 +55,7 @@ CREATE OR REPLACE TABLE `tickets` (
   `título` varchar(50) NOT NULL,
   `mensaje` varchar(500) NOT NULL,
   `estado` varchar(11) NOT NULL DEFAULT 'Creado',
-  `autor` int(11) DEFAULT NULL,
-  `fecha` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `autor` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
