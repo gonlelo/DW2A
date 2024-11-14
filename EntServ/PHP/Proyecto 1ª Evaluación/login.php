@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		//Aquí se incluyen todos los datos del usuario actual
 		$_SESSION['usuario'] = datos_sesion($_POST['usuario']);
 
-
 		if (tipo_de_usuario($_SESSION['email'])==1) {
 			header("Location: principalTécnico.php");
 		}else{

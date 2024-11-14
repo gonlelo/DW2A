@@ -15,9 +15,7 @@ function comprobar_usuario($nombre, $clave){
 	);
 	// Incluyo los parámetros de conexión y creo el objeto PDO
 	include "configuracion_bd.php";
-	$bd = new PDO("mysql:dbname=".$bd_config["nombrebd"].";host=".$bd_config["ip"], 
-					$bd_config["usuario"],
-					$bd_config["clave"]);
+	$bd = crear_base();
 
 	// Creo la sentencia SQL y ejecuto	
 	$query = "SELECT email FROM empleados WHERE email = '$nombre'";
@@ -60,14 +58,21 @@ function tipo_de_usuario($email){
 function borrarTicket($id){
 	$bd=crear_base();
 	$query = "DELETE FROM tickets WHERE num = $id";
-			$resul = $bd->query($query);
+			$bd->query($query);
+	$bd = null;
+}
+
+function cambiarEstado($estado,$id){
+	$bd=crear_base();
+	$query = "UPDATE tickets SET estado='$estado'WHERE num = '$id'";
+			$bd->query($query);
 	$bd = null;
 }
 
 function buscarTicket($palabra){
 	$bd=crear_base();
-	$query ="SELECT tck.num, tck.título, tck.mensaje, tck.estado, emp.nombre, emp.apellido FROM tickets tck LEFT JOIN empleados emp ON 
-	tck.autor = emp.id WHERE tck.título LIKE '%$palabra%' OR emp.nombre LIKE '%$palabra%' OR  tck.mensaje LIKE '%$palabra%' OR  emp.apellido LIKE '%$palabra%' OR  tck.num LIKE '%$palabra%'";
+	$query ="SELECT tck.num, tck.título, tck.mensaje, tck.estado, emp.nombre, emp.apellido, DATE_FORMAT(tck.fecha, '%Y-%m-%d %H:%i') as fecha FROM tickets tck LEFT JOIN empleados emp ON 
+	tck.autor = emp.id WHERE tck.título LIKE '%$palabra%' OR emp.nombre LIKE '%$palabra%' OR  tck.mensaje LIKE '%$palabra%' OR  emp.apellido LIKE '%$palabra%' OR  tck.num LIKE '%$palabra%' ORDER BY fecha DESC";
 			
 			$resul = $bd->query($query);
 			foreach ($resul as $ticket) {
@@ -81,6 +86,7 @@ function buscarTicket($palabra){
 						<input type='hidden' name='eliminar' value='{$ticket['num']}'>
 						<button type='submit' style='text-align: left'>Borrar</button>
 						</form>";
+						echo "<p><small>Fecha: {$ticket['fecha']}</small></p>";
 						echo "<i><p style='text-align: right'>De: {$ticket['nombre']} {$ticket['apellido']}</p></i>";
 						echo "</div>";
 						echo "</a>";

@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Consulta de tickets del usuario, con búsqueda opcional
-    $query = "SELECT num, título, mensaje, estado, fecha FROM tickets WHERE autor = :id";
+    $query = "SELECT num, título, mensaje, estado, DATE_FORMAT(fecha, '%Y-%m-%d %H:%i') as fecha FROM tickets WHERE autor = :id";
 
     // Si hay un término de búsqueda, lo añadimos a la consulta
     if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
@@ -105,12 +105,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mostrar los tickets del usuario
     if ($stmt->rowCount() >= 1) {
         foreach ($stmt as $ticket) {
+            echo "<a href='ticket.php?idticket={$ticket['num']}' style='text-decoration: none;'>";
             echo "<div>";
             echo "<h1><b>#{$ticket['num']}</b> {$ticket['título']}</h1>";
             echo "<p>{$ticket['mensaje']}</p><br>";
             echo "<p><b>{$ticket['estado']}</b></p>";
             echo "<p><small>Fecha: {$ticket['fecha']}</small></p>";
             echo "</div>";
+            echo "</a>";
         }
     } else {
         echo "<p>No se encontraron tickets para tu búsqueda.</p>";

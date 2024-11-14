@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")  {
 			if (isset($_POST['palabra'])) {
 				buscarTicket($_POST['palabra']);
 			}else{
-			$query = "SELECT tck.num, tck.título, tck.mensaje, tck.estado, emp.nombre, emp.apellido FROM tickets tck LEFT JOIN empleados emp ON tck.autor = emp.id;";
+			$query = "SELECT tck.num, tck.título, tck.mensaje, tck.estado, emp.nombre, emp.apellido, DATE_FORMAT(tck.fecha, '%Y-%m-%d %H:%i') as fecha FROM tickets tck LEFT JOIN empleados emp ON tck.autor = emp.id ORDER BY fecha DESC";
 			$resul = $bd->query($query);
 			if($resul->rowCount() >= 1){
 				foreach ($resul as $ticket) {
@@ -59,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")  {
 					<input type='hidden' name='eliminar' value='{$ticket['num']}'>
 					<button type='submit' style='text-align: left'>Borrar</button>
 					</form>";
+					echo "<p><small>Fecha: {$ticket['fecha']}</small></p>";
 					echo "<i><p style='text-align: right'>De: {$ticket['nombre']} {$ticket['apellido']}</p></i>";
 					echo "</div>";
 					echo "</a>";

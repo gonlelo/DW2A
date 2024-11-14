@@ -60,6 +60,18 @@ CREATE OR REPLACE TABLE `tickets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- Estructura de tabla para la tabla `respuestas`
+--
+
+CREATE OR REPLACE TABLE `respuestas` (
+  `num` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `mensaje` varchar(500) NOT NULL,
+  `autor` int(11) DEFAULT NULL,
+  `ticket` int(11) DEFAULT NULL,
+  `fecha` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
 -- Volcado de datos para la tabla `tickets`
 --
 
