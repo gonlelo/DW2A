@@ -110,3 +110,30 @@ function mostrarRespuestas($ticket){
 		echo "<p><b>{$fila['nombre']} {$fila['apellido']}</b>: {$fila['mensaje']} <span style='padding-left:15em;'>{$fila['fecha']}</span></p> ";
 	}
 }
+
+function crearURL($idTicket){
+	$bd = crear_base();
+	$query = "SELECT ruta FROM tickets WHERE num='$idTicket'";
+	$resul = $bd->query($query);
+	if($resul->rowCount() >= 1){
+		$qry="SELECT ruta FROM tickets WHERE num ='$idTicket'";
+		$resul = $bd->query($qry);
+		foreach($resul as $fila){
+			echo "<a href='descarga.php?ruta=" . urlencode($fila['ruta']) . "'>Descargar archivo</a>";
+		}
+		
+	}
+}
+
+function crear_cod_verificacion() {
+	$num1=rand(0,9);
+	$num2=rand(0,9);
+	$num3=rand(0,9);
+	$num4=rand(0,9);
+	$num5=rand(0,9);
+	$num6=rand(0,9);
+	$num7=rand(0,9);
+	$num8=rand(0,9);
+	$numString="$num1$num2$num3$num4$num5$num6$num7$num8";
+	return $numString;
+}

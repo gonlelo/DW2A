@@ -32,7 +32,9 @@ CREATE OR REPLACE TABLE `empleados` (
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `contraseña` varchar(50) NOT NULL
+  `contraseña` varchar(50) NOT NULL,
+  `verificado` BOOLEAN DEFAULT 0,
+  `cod_verificacion` varchar(8) UNIQUE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
@@ -56,7 +58,8 @@ CREATE OR REPLACE TABLE `tickets` (
   `mensaje` varchar(500) NOT NULL,
   `estado` varchar(11) NOT NULL DEFAULT 'Creado',
   `autor` int(11) DEFAULT NULL,
-  `fecha` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `fecha` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ruta` varchar(120) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --

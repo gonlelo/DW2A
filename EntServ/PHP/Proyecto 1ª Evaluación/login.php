@@ -21,12 +21,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		//Aquí se incluyen todos los datos del usuario actual
 		$_SESSION['usuario'] = datos_sesion($_POST['usuario']);
 
-		if (tipo_de_usuario($_SESSION['email'])==1) {
-			header("Location: principalTécnico.php");
-		}else{
-			header("Location: principalEmpleado.php");
+		if ($_SESSION['usuario']['verificado'] == 1) {
+			if (tipo_de_usuario($_SESSION['email'])==1) {
+				header("Location: principalTécnico.php");
+			}else{
+				header("Location: principalEmpleado.php");
+			}
+		}else {
+			$err = 8;
 		}
-		return;
+
 	}
 }else {
 	if (isset($_GET['denegado'])) {
@@ -44,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if ($_GET['redirigido'] == true) {
 			$err = 5;
 		}
-		if ($_GET['redirigido'] == 'signup') {
+		if ($_GET['redirigido'] == 'verificado') {
 			$err = 7;
 		}
 	}
@@ -98,7 +102,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					echo "<b><p style='color: red'>ACCESO DENEGADO. El ticket que estás intentando acceder no es tuyo. </p></b>";
 					break;
 				case 7:
-					echo "<b><p style='color: green'>Cuenta creada. Inicia sesión para continuar. </p></b>";
+					echo "<b><p style='color: green'>Cuenta verificada. Inicia sesión para continuar. </p></b>";
+					break;
+				case 8:
+					echo "<b><p style='color: red'>Cuenta no verificada. Verificala mediante el link enviado a tu correo electrónico AÑADIR 'MANDAR DE NUEVO'. </p></b>";
 					break;
 			}
 		} 

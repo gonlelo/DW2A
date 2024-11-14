@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
     $titulo = $_POST['titulo'];
     $mensaje = $_POST['mensaje'];
-    if (isset($titulo) && isset($mensaje)) {
+    if (isset($titulo) && isset($mensaje)&&isset($_FILES['archivo']) && $_FILES['archivo']['error'] == 0) {
             
         // Query para encontrar el id para pasarlo a la columna 'autor' de tickets
         $sqlId = "SELECT id FROM empleados WHERE email='". $_SESSION['email'] ."'";
@@ -24,9 +24,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         foreach($resul as $fila){
             $id = $fila['id'];
         }
+            $nombreArchivo = $_FILES['archivo']['name'];
+            $temporalArchivo = $_FILES['archivo']['tmp_name'];
+            
+            $directorioDestino = "/xampp/htdocs/Ivan/Proyecto1ev/adjuntosTickets/";
+    
+            if (!is_dir($directorioDestino)) {
+                mkdir($directorioDestino, 0777, true);
+            }
+    
+            // Generar un nombre único para el archivo
+            $nombreUnico = basename($nombreArchivo);
+            $rutaArchivo = $directorioDestino . $nombreUnico;
+    
+            move_uploaded_file($temporalArchivo, $rutaArchivo);
 
         // Insertar el ticket en la base de datos
-        $query = "INSERT INTO tickets (título, mensaje, autor) VALUES ('$titulo', '$mensaje','$id')";
+        $query = "INSERT INTO tickets (título, mensaje, autor,ruta) VALUES ('$titulo', '$mensaje','$id','$rutaArchivo')";
 
         if ($bd->exec($query) === 1) {
             // Redirigir al usuario para evitar el reenvío de formulario
@@ -40,31 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $bd = null;
     }
 }
-// if (isset($_FILES['archivo']) && $_FILES['archivo']['error'] == 0) {
-//     $nombreArchivo = $_FILES['archivo']['name'];       // Nombre original del archivo
-//     $tipoArchivo = $_FILES['archivo']['type'];         // Tipo MIME del archivo
-//     $tamañoArchivo = $_FILES['archivo']['size'];       // Tamaño del archivo en bytes
-//     $temporalArchivo = $_FILES['archivo']['tmp_name']; // Ubicación temporal del archivo
 
-//     // Directorio donde se guardará el archivo
-//     $directorioDestino = "descargas/";
-
-//     // Crear el directorio si no existe
-//     if (!is_dir($directorioDestino)) {
-//         mkdir($directorioDestino, 0777, true);
-//     }
-
-//     // Guardar el archivo en la ubicación deseada
-//     $rutaDestino = $directorioDestino . basename($nombreArchivo);
-
-//     if (move_uploaded_file($temporalArchivo, $rutaDestino)) {
-//         echo "El archivo ha sido subido correctamente a $rutaDestino.";
-//     } else {
-//         echo "Hubo un error al mover el archivo.";
-//     }
-// } else {
-//     echo "No se ha seleccionado ningún archivo o hubo un error en la carga.";
-// }
 ?>
 
 <!DOCTYPE html>

@@ -1,6 +1,8 @@
 <?php
 require_once 'bd.php';
 require_once 'sesiones.php';
+require 'vendor/autoload.php';
+require 'emails.php';
 
 cerrar_sesion();
 
@@ -29,16 +31,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($subcadena !='empresa.com' && $subcadena != 'soporte.empresa.com') {
             $err = 3;
         }else {
-            $query ="INSERT INTO `empleados` (`nombre`, `apellido`, `email`, `contraseña`) VALUES ('{$_POST['nombre']}', '{$_POST['apellido']}', '{$_POST['email']}', '{$_POST['clave']}')";
+            $cod = crear_cod_verificacion();
+            $query ="INSERT INTO `empleados` (`nombre`, `apellido`, `email`, `contraseña`, cod_verificacion) VALUES ('{$_POST['nombre']}', '{$_POST['apellido']}', '{$_POST['email']}', '{$_POST['clave']}','{$cod}' )";
             $bd->query($query);
-            header("Location: login.php?redirigido=signup");
+            $err = enviarEmail($_POST['email'], $_POST['nombre'], 'tuempresa@empresa.com', 'Verifica tu identidad', "Copia el siguiente link en tu navegador: <br> <br> localhost{$_SERVER['PHP_SELF']}?cod={$cod}");
         }
         }else {
             $err = 4;
         }
       }
-
     }
+}
+if (isset($_GET['cod'])) {
+    $bd=crear_base();
+    $query = "SELECT id FROM empleados WHERE cod_verificacion = '{$_GET['cod']}'";
+    $resul = $bd->query($query);
+    foreach ($resul as $fila) {
+        $id = $fila['id'];
+    }
+
+    $query = "UPDATE empleados SET verificado = 1 WHERE id = {$id};";
+    $bd->query($query);
+    header("Location: login.php?redirigido=verificado");
 }
 ?>
 <!----------------------------------------------------------------------------------------->
@@ -77,6 +91,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				case 4:
 					echo '<b><p style="color: red">Formato de email inválido. <br>
                     Formato válido: "nombreapellido@empresa.com" o "nombreapellido@soporte.empresa.com"</p></b>';
+					break;
+                case 5:
+                    echo "<b><p style='color: green'>Verifica tu identidad con el email que hemos enviado a {$_POST['email']}<br>";
 					break;
 			}
 		} 

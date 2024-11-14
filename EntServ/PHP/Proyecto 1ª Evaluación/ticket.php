@@ -48,6 +48,7 @@ foreach ($resul as $fila) {
                         echo "<p style='float: right'><small>Fecha: {$ticket['fecha']}</small></p>";
                         echo "<p>{$ticket['mensaje']}</p><br>";
                         echo "<h3>CONVERSACIÓN</h3><br>";
+                        crearURL($ticket['num']);
                         if ($_SERVER["REQUEST_METHOD"] == "POST")  {
                             if (isset($_POST['respuesta'])) {
                                 crearRespuesta($_POST['respuesta'],$_SESSION['usuario']['id'],$ticket['num']);
@@ -82,6 +83,7 @@ foreach ($resul as $fila) {
                         echo "<p style='float: right'><small>Fecha: {$ticket['fecha']}</small></p>";
                         echo "<p>{$ticket['mensaje']}</p><br>";
                         echo "<h3>CONVERSACIÓN</h3><br>";
+                        crearURL($ticket['num']);
                         if ($_SERVER["REQUEST_METHOD"] == "POST")  {
                         if (isset($_POST['respuesta'])) {
                             crearRespuesta($_POST['respuesta'],$_SESSION['usuario']['id'],$ticket['num']);
