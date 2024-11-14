@@ -40,6 +40,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $bd = null;
     }
 }
+// if (isset($_FILES['archivo']) && $_FILES['archivo']['error'] == 0) {
+//     $nombreArchivo = $_FILES['archivo']['name'];       // Nombre original del archivo
+//     $tipoArchivo = $_FILES['archivo']['type'];         // Tipo MIME del archivo
+//     $tamañoArchivo = $_FILES['archivo']['size'];       // Tamaño del archivo en bytes
+//     $temporalArchivo = $_FILES['archivo']['tmp_name']; // Ubicación temporal del archivo
+
+//     // Directorio donde se guardará el archivo
+//     $directorioDestino = "descargas/";
+
+//     // Crear el directorio si no existe
+//     if (!is_dir($directorioDestino)) {
+//         mkdir($directorioDestino, 0777, true);
+//     }
+
+//     // Guardar el archivo en la ubicación deseada
+//     $rutaDestino = $directorioDestino . basename($nombreArchivo);
+
+//     if (move_uploaded_file($temporalArchivo, $rutaDestino)) {
+//         echo "El archivo ha sido subido correctamente a $rutaDestino.";
+//     } else {
+//         echo "Hubo un error al mover el archivo.";
+//     }
+// } else {
+//     echo "No se ha seleccionado ningún archivo o hubo un error en la carga.";
+// }
 ?>
 
 <!DOCTYPE html>

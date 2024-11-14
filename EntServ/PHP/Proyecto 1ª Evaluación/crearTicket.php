@@ -26,6 +26,7 @@ if ($_SESSION['tipo'] != 0) {
 
         Mensaje:<br>
         <textarea name="mensaje" rows="4" required></textarea><br><br>
+        <input type="file"><br><br>
 
         <input type="submit" value='Enviar Ticket'>
     </form>

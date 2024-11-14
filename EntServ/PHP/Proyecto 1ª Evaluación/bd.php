@@ -104,9 +104,9 @@ function crearRespuesta($respuesta,$autor,$num){
 
 function mostrarRespuestas($ticket){
 	$bd = crear_base();
-	$query = "SELECT * FROM respuestas WHERE ticket = '$ticket' ORDER BY fecha DESC";
+	$query = "SELECT res.mensaje, emp.nombre, emp.apellido, DATE_FORMAT(res.fecha, '%Y-%m-%d %H:%i') as fecha FROM respuestas res LEFT JOIN empleados emp ON res.autor = emp.id WHERE res.ticket=$ticket ORDER BY fecha DESC";
 	$resul = $bd->query($query);
 	foreach($resul as $fila){
-		echo "<p><b>{$fila['autor']}</b>: {$fila['mensaje']}</p>";
+		echo "<p><b>{$fila['nombre']} {$fila['apellido']}</b>: {$fila['mensaje']} <span style='padding-left:15em;'>{$fila['fecha']}</span></p> ";
 	}
 }

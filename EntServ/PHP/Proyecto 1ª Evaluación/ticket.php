@@ -20,7 +20,21 @@ foreach ($resul as $fila) {
     $idautor = $fila['id'];
 }
 
-if ($_SESSION['tipo'] == 0 && $_SESSION['usuario']['id'] != $idautor){
+
+?>
+
+
+<!----------------------------------------------------------------------------------------->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ticket</title>
+</head>
+<body>
+    <?php
+    if ($_SESSION['tipo'] == 0 && $_SESSION['usuario']['id'] != $idautor){
     header("Location: login.php?denegado=ticketajeno");
 }else {
     if ($_SESSION['tipo'] == 0 ){
@@ -32,7 +46,21 @@ if ($_SESSION['tipo'] == 0 && $_SESSION['usuario']['id'] != $idautor){
                         echo "<i><p style='float: right'>De: {$ticket['nombre']} {$ticket['apellido']}</p></i>";
                         echo "<h1><b>#{$ticket['num']}</b> {$ticket['título']}</h1><br>";
                         echo "<p style='float: right'><small>Fecha: {$ticket['fecha']}</small></p>";
-                        echo "<p>{$ticket['mensaje']}</p><br>"; 
+                        echo "<p>{$ticket['mensaje']}</p><br>";
+                        echo "<h3>CONVERSACIÓN</h3><br>";
+                        if ($_SERVER["REQUEST_METHOD"] == "POST")  {
+                            if (isset($_POST['respuesta'])) {
+                                crearRespuesta($_POST['respuesta'],$_SESSION['usuario']['id'],$ticket['num']);
+                                
+                                header("Location: ticket.php?idticket={$ticket['num']}");
+                            }   
+                            }
+                            mostrarRespuestas($ticket['num']); 
+                            echo "<br><form method='POST' style='display:inline;'> 
+                        <textarea name='respuesta' placeholder='Respuesta'></textarea>
+                         <input type='hidden' name='respuestaActiva' value='True'>
+                        <button type='submit' style='text-align: left;'>Responder</button>
+                        </form><br><br>"; 
                         echo "<p><b>{$ticket['estado']}</b></p>";
                         echo "<form method='POST' style='display:inline;'> 
                         <input type='hidden' name='eliminar' value='{$ticket['num']}'>
@@ -53,14 +81,17 @@ if ($_SESSION['tipo'] == 0 && $_SESSION['usuario']['id'] != $idautor){
                         echo "<h1><b>#{$ticket['num']}</b> {$ticket['título']}</h1><br>";
                         echo "<p style='float: right'><small>Fecha: {$ticket['fecha']}</small></p>";
                         echo "<p>{$ticket['mensaje']}</p><br>";
+                        echo "<h3>CONVERSACIÓN</h3><br>";
                         if ($_SERVER["REQUEST_METHOD"] == "POST")  {
                         if (isset($_POST['respuesta'])) {
-                            crearRespuesta($_POST['respuesta'],$ticket['autor'],$ticket['num']);
-                        } 
-                            mostrarRespuestas($ticket['num']);
+                            crearRespuesta($_POST['respuesta'],$_SESSION['usuario']['id'],$ticket['num']);
+                            header("Location: ticket.php?idticket={$ticket['num']}");
+                        }   
                         }
+                        mostrarRespuestas($ticket['num']);
                         echo "<br><form method='POST' style='display:inline;'> 
                         <textarea name='respuesta' placeholder='Respuesta'></textarea>
+                         <input type='hidden' name='respuestaActiva' value='True'>
                         <button type='submit' style='text-align: left;'>Responder</button>
                         </form><br><br>"; 
                         echo "<form method='POST' style='display:inline;'> 
@@ -85,17 +116,5 @@ if ($_SESSION['tipo'] == 0 && $_SESSION['usuario']['id'] != $idautor){
     }
 }
 ?>
-
-
-<!----------------------------------------------------------------------------------------->
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Ticket</title>
-</head>
-<body>
-    
 </body>
 </html>

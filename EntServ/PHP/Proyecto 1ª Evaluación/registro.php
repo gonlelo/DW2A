@@ -1,0 +1,85 @@
+<?php
+require_once 'bd.php';
+require_once 'sesiones.php';
+
+cerrar_sesion();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {  
+    $clave = $_POST['clave'];
+    $clave2 = $_POST['clave2'];
+    if($clave !== $clave2){
+        $err = 1;
+    }else{
+      $bd=crear_base();
+      $query = "SELECT email FROM empleados WHERE email = '{$_POST['email']}'";
+      $resul = $bd->query($query);
+      if ($resul->rowcount() === 1) {
+        $err = 2;
+      }else{
+            $subcadena='';
+            $letra = '@';
+        
+        // 1. Encontrar la posición de la letra en el string.
+        $posicion = strpos($_POST['email'], $letra);
+        
+        if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            // 2. Extraer la parte del string que sigue a la letra.
+            $subcadena = substr($_POST['email'], $posicion + 1);
+        
+        if ($subcadena !='empresa.com' && $subcadena != 'soporte.empresa.com') {
+            $err = 3;
+        }else {
+            $query ="INSERT INTO `empleados` (`nombre`, `apellido`, `email`, `contraseña`) VALUES ('{$_POST['nombre']}', '{$_POST['apellido']}', '{$_POST['email']}', '{$_POST['clave']}')";
+            $bd->query($query);
+            header("Location: login.php?redirigido=signup");
+        }
+        }else {
+            $err = 4;
+        }
+      }
+
+    }
+}
+?>
+<!----------------------------------------------------------------------------------------->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Registro</title>
+		<meta charset = "UTF-8">
+    </head>
+    <body>
+    <form action = "registro.php" method = "POST">
+			<label for = "email">Email</label> 
+			<input value = "<?php if(isset($_POST['email'])) echo $_POST['email'];?>" id = "email" name = "email" type = "text" required>
+            <label for = "nombre">Nombre</label> 
+			<input value = "<?php if(isset($_POST['nombre'])) echo $_POST['nombre'];?>" id = "nombre" name = "nombre" type = "text" required>
+            <label for = "apellido">Apellido</label> 
+			<input value = "<?php if(isset($_POST['nombre'])) echo $_POST['apellido'];?>" id = "apellido" name = "apellido" type = "text" required>
+			<label for = "clave">Clave</label>
+			<input id = "clave" name = "clave" type = "password" required>
+            <label for = "clave2">Confirmar clave</label>
+			<input id = "clave2" name = "clave2" type = "password" required>
+			<input type = "submit">
+		</form>
+        <?php
+		if (isset($err)) {
+			switch ($err) {
+				case 1:
+					echo "<b><p style='color: red'>Las contraseñas no coinciden</p></b>";
+					break;
+				case 2:
+					echo "<b><p style='color: red'>Este correo ya tiene una cuenta asociada</p></b>";
+					break;
+				case 3:
+					echo '<b><p style="color: red">El correo de empresa debe acabar en "@empresa.com" o "@soporte.empresa.com"</p></b>';
+					break;
+				case 4:
+					echo '<b><p style="color: red">Formato de email inválido. <br>
+                    Formato válido: "nombreapellido@empresa.com" o "nombreapellido@soporte.empresa.com"</p></b>';
+					break;
+			}
+		} 
+		?>
+    </body>
+</html>

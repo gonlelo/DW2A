@@ -41,7 +41,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 	if(isset($_GET["redirigido"])){
-		$err = 5;
+		if ($_GET['redirigido'] == true) {
+			$err = 5;
+		}
+		if ($_GET['redirigido'] == 'signup') {
+			$err = 7;
+		}
 	}
 } ?>
 
@@ -63,14 +68,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		</style>
 	</head>
 	<body>
-		<form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "POST">
+		<form action = "login.php" method = "POST">
 			<label for = "usuario">Usuario</label> 
 			<input value = "<?php if(isset($_POST['usuario'])) echo $_POST['usuario'];?>" id = "usuario" name = "usuario" type = "text" required>
 			<label for = "clave">Clave</label> 
 			<input id = "clave" name = "clave" type = "password" required>					
 			<input type = "submit">
 		</form>
-
+		<a href="registro.php">O regístrate aquí<a>
 		<?php
 		if (isset($err)) {
 			switch ($err) {
@@ -91,6 +96,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					break;
 				case 6:
 					echo "<b><p style='color: red'>ACCESO DENEGADO. El ticket que estás intentando acceder no es tuyo. </p></b>";
+					break;
+				case 7:
+					echo "<b><p style='color: green'>Cuenta creada. Inicia sesión para continuar. </p></b>";
 					break;
 			}
 		} 
