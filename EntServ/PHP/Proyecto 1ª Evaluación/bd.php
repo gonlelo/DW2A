@@ -95,3 +95,18 @@ function buscarTicket($palabra){
 		
 	$bd = null;
 }
+
+function crearRespuesta($respuesta,$autor,$num){
+	$bd = crear_base();
+	$query = "INSERT INTO respuestas (mensaje, autor, ticket) VALUES ('$respuesta', '$autor', '$num')";
+	$bd->query($query);
+}
+
+function mostrarRespuestas($ticket){
+	$bd = crear_base();
+	$query = "SELECT * FROM respuestas WHERE ticket = '$ticket' ORDER BY fecha DESC";
+	$resul = $bd->query($query);
+	foreach($resul as $fila){
+		echo "<p><b>{$fila['autor']}</b>: {$fila['mensaje']}</p>";
+	}
+}

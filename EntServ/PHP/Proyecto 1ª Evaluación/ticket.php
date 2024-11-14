@@ -44,7 +44,7 @@ if ($_SESSION['tipo'] == 0 && $_SESSION['usuario']['id'] != $idautor){
                     }
                 }
     }else{
-        $query = "SELECT tck.num, tck.título, tck.mensaje, tck.estado, emp.nombre, emp.apellido, DATE_FORMAT(tck.fecha, '%Y-%m-%d %H:%i') as fecha FROM tickets tck LEFT JOIN empleados emp ON tck.autor = emp.id WHERE tck.num = {$_GET['idticket']}";
+        $query = "SELECT tck.num, tck.título, tck.autor, tck.mensaje, tck.estado, emp.nombre, emp.apellido, DATE_FORMAT(tck.fecha, '%Y-%m-%d %H:%i') as fecha FROM tickets tck LEFT JOIN empleados emp ON tck.autor = emp.id WHERE tck.num = {$_GET['idticket']}";
                 $resul = $bd->query($query);
                 if($resul->rowCount() >= 1){
                     foreach ($resul as $ticket) {
@@ -55,8 +55,10 @@ if ($_SESSION['tipo'] == 0 && $_SESSION['usuario']['id'] != $idautor){
                         echo "<p>{$ticket['mensaje']}</p><br>";
                         if ($_SERVER["REQUEST_METHOD"] == "POST")  {
                         if (isset($_POST['respuesta'])) {
-                            echo $_POST['respuesta'];
-                        }}
+                            crearRespuesta($_POST['respuesta'],$ticket['autor'],$ticket['num']);
+                        } 
+                            mostrarRespuestas($ticket['num']);
+                        }
                         echo "<br><form method='POST' style='display:inline;'> 
                         <textarea name='respuesta' placeholder='Respuesta'></textarea>
                         <button type='submit' style='text-align: left;'>Responder</button>
