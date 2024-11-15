@@ -3,6 +3,7 @@ require_once 'bd.php';
 require_once 'sesiones.php';
 require 'vendor/autoload.php';
 require 'emails.php';
+require 'cabecera.php';
 
 cerrar_sesion();
 
