@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Javascript DW2A</title>   
+    <style>
+        #nombre-flotante {
+            position: fixed;
+            background-color: brown;
+            color: #fabada;
+        }
+        .superior-izquierda {
+            top: 10px;
+            left: 10px;
+        }
+        .inferior-derecha {
+            bottom: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="nombre-flotante">Gonzalo de Saavedra</div>
+    <form>
+        <h1>REGISTRAR:</h1>
+        <table>
+            <tr><td>NombreObjeto*:</td><td><input type="text" id="nombre" maxlength="8" required>
+            <input type="button" id="cuentaLetra" value="contar letra" ></td></tr>  
+            <tr><td>Tipo numeración*:</td><td>
+            <select size="1" id="tipo" required>
+                <option value="" selected></option> 
+                <option value="entero">Decimal Entero</option>    
+                <option value="hexadecimal">Hexadecimal</option>
+            </select></td></tr>
+            <tr><td>Valor*:</td><td><input type="text" id="valor" required></td></tr>
+            <tr><td><input type="checkbox" name="Acepto" id="Acepto" value="Acepto" required>Acepto enviar todos los datos</td></tr>
+            <tr><td><input type="submit" value="Registrar"></td></tr>
+        </table>    
+    </form>
+
+    <script>
+        
+        //función que va cambiando las clases del nombre para que se mueva
+        let gonzalo = document.getElementById('nombre-flotante');
+        let posicionSuperior = true;
+
+        function alternarPosicion() {
+            if (posicionSuperior){
+                gonzalo.classList.remove('superior-izquierda');
+                gonzalo.classList.add('inferior-derecha');
+                posicionSuperior = false;
+            }else{
+                gonzalo.classList.remove('inferior-derecha');
+                gonzalo.classList.add('superior-izquierda');            
+                posicionSuperior = true;
+            }
+        }
+        gonzalo.classList.add('superior-izquierda');
+        setInterval(alternarPosicion, 500);
+
+
+        // validación del form con expregulares 
+        document.querySelector('form').addEventListener('submit', function(e) {
+            let nombre = document.getElementById('nombre').value;
+            let tipo = document.getElementById('tipo').value;
+            let valor = document.getElementById('valor').value;    
+            let validacionEntero = /^[+-]?\d+$/;
+            let validacionHexadecimal = /^0x[0-9A-Fa-f]+$/;
+            
+            let esValido = false;
+            
+            if (tipo=== 'entero') { 
+                esValido = validacionEntero.test(valor);
+            }else if (tipo === 'hexadecimal'){  
+                esValido = validacionHexadecimal.test(valor);
+            }
+            
+            if (!esValido){
+                alert('el valor no coincide con lo que has elegido encima');
+                return;
+            }
+            //Almacenar los datos
+            let datosRegistrados = [];
+            datosRegistrados.push([[nombre], [tipo], [valor]]); 
+            //document.write("datos metidos en el array:" + datosRegistrados + "<br>");
+            //document.write("<a href='Ejercicio.html'>Volver</a>");
+            console.log(datosRegistrados);
+            
+            alert('todo bien!');
+        });
+
+        //Contar letra
+        document.getElementById('cuentaLetra').addEventListener('click', function() {
+            let letra= prompt('Introduce una letra para contar:');
+            if (letra && letra.length === 1){
+                let nombreObjeto = document.getElementById('nombre').value;
+                let contador =0;
+                
+                for (let char of nombreObjeto.toLowerCase() ){
+                    if (char === letra.toLowerCase()){
+                        contador++; 
+                }
+                }
+                //No me da tiempo a hacer una nueva window
+                alert(`la letra "${letra}" aparece ${contador} veces en lo que has escrito`);
+            } else {
+                alert('Por favor, introduce una sola letra');
+            } 
+        }); 
+    </script>
+</body>
+</html>

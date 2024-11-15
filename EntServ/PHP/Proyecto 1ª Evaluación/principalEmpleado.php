@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
     $titulo = $_POST['titulo'];
     $mensaje = $_POST['mensaje'];
-    if (isset($titulo) && isset($mensaje)) {
+    if (isset($titulo) && isset($mensaje)&&isset($_FILES['archivo']) && $_FILES['archivo']['error'] == 0) {
             
         // Query para encontrar el id para pasarlo a la columna 'autor' de tickets
         $sqlId = "SELECT id FROM empleados WHERE email='". $_SESSION['email'] ."'";
@@ -24,9 +24,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         foreach($resul as $fila){
             $id = $fila['id'];
         }
+            $nombreArchivo = $_FILES['archivo']['name'];
+            $temporalArchivo = $_FILES['archivo']['tmp_name'];
+            
+            $directorioDestino = "/xampp/htdocs/Ivan/Proyecto1ev/adjuntosTickets/";
+    
+            if (!is_dir($directorioDestino)) {
+                mkdir($directorioDestino, 0777, true);
+            }
+    
+            // Generar un nombre único para el archivo
+            $nombreUnico = basename($nombreArchivo);
+            $rutaArchivo = $directorioDestino . $nombreUnico;
+    
+            move_uploaded_file($temporalArchivo, $rutaArchivo);
 
         // Insertar el ticket en la base de datos
-        $query = "INSERT INTO tickets (título, mensaje, autor) VALUES ('$titulo', '$mensaje','$id')";
+        $query = "INSERT INTO tickets (título, mensaje, autor,ruta) VALUES ('$titulo', '$mensaje','$id','$rutaArchivo')";
 
         if ($bd->exec($query) === 1) {
             // Redirigir al usuario para evitar el reenvío de formulario
@@ -40,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $bd = null;
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Consulta de tickets del usuario, con búsqueda opcional
-    $query = "SELECT num, título, mensaje, estado, fecha FROM tickets WHERE autor = :id";
+    $query = "SELECT num, título, mensaje, estado, DATE_FORMAT(fecha, '%Y-%m-%d %H:%i') as fecha FROM tickets WHERE autor = :id";
 
     // Si hay un término de búsqueda, lo añadimos a la consulta
     if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
@@ -105,12 +120,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mostrar los tickets del usuario
     if ($stmt->rowCount() >= 1) {
         foreach ($stmt as $ticket) {
+            echo "<a href='ticket.php?idticket={$ticket['num']}' style='text-decoration: none;'>";
             echo "<div>";
             echo "<h1><b>#{$ticket['num']}</b> {$ticket['título']}</h1>";
             echo "<p>{$ticket['mensaje']}</p><br>";
             echo "<p><b>{$ticket['estado']}</b></p>";
             echo "<p><small>Fecha: {$ticket['fecha']}</small></p>";
             echo "</div>";
+            echo "</a>";
         }
     } else {
         echo "<p>No se encontraron tickets para tu búsqueda.</p>";

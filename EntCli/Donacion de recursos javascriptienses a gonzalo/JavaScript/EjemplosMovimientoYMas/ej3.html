@@ -1,0 +1,48 @@
+<!-- AL pulsar el botón “Generar ventana” se crea una ventana de tamaño 200x200 que cada
+100 milisegundos cambia aleatoriamente de posición y el botón pasa a tener el texto y
+función “Parar”. Al pulsarlo parará el movimiento de la ventana y pasa a tener el texto y
+función “Mover”, que volverá a poner en movimiento aleatorio a la ventana y volverá al
+texto y función “Parar”. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let intervalo;
+        let myWindow;
+       
+        function openWindow() {
+         if (myWindow&& !myWindow.closed) {
+           
+        }else{
+            let altura = Math.random()*window.innerHeight;
+            let anchura = Math.random()*window.innerWidth;
+            myWindow =  window.open('', '', 'width=200, height=200, top='+altura+', left='+anchura);
+        }
+
+         intervalo = setInterval(function() {
+            let nuevaAltura = Math.random()*(window.innerHeight-200);
+            let nuevaAnchura = Math.random()*(window.innerWidth-200);
+            myWindow.moveTo(nuevaAnchura,nuevaAltura);
+    }, 100);
+    document.getElementById("ventana").style.visibility='hidden';
+    document.getElementById("parar").style.visibility='visible';
+    } 
+    function stopWindow(){
+        clearInterval(intervalo);
+        document.getElementById("ventana").style.visibility='visible';
+        document.getElementById("parar").style.visibility='hidden';
+    }
+    window.onload = function() {
+            document.getElementById('ventana').onclick = openWindow;
+            document.getElementById('parar').onclick = stopWindow;
+        }
+    </script>
+</head>
+<body>
+    <button id="ventana">Mover</button>
+    <button id="parar" style="visibility: hidden;">Parar</button>
+</body>
+</html>

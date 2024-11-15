@@ -1,0 +1,36 @@
+<!-- Programa que pida cadenas de texto hasta que se pulse “cancelar” en la ventana de
+confirmación. Al salir con “cancelar” deben mostrarse todas las cadenas concatenadas con un
+guión -. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ej1</title>
+</head>
+<body>
+   <script>
+    let cadena="";
+    while(true) {
+        cadena2 = prompt("Ingrese la cadena" );
+        if(!cadena2){
+            break;
+        }
+        cadena+= cadena2+"-";
+        
+    }
+    cadena = cadena.slice(0, -1);
+    
+
+    
+    
+    
+    //escribir en el html
+    document.write(cadena);
+   
+
+
+ </script>
+</body>
+</html>

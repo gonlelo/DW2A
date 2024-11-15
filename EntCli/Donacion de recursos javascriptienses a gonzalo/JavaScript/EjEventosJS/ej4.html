@@ -1,0 +1,28 @@
+<!--Escribiremos una palabra en una caja de contraseña, y por cada carácter que escribamos,
+en una caja de texto normal, iremos visualizando los caracteres escritos en la caja de
+contraseña. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ej4</title>
+   
+</head>
+<body>
+   <form action="">
+    <label for="contraseña">Contraseña:</label>
+    <input type="password" id="contraseña" name="" oninput=""><br><br>
+    <label for="normal">Normal:</label>
+    <input type="text" id="normal" name="" oninput="">
+   </form>
+   <script>
+   document.querySelector('input#contraseña').addEventListener('input', function(){
+        document.querySelector('input#normal').value=this.value;
+
+    })
+  
+      
+ </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!-- Debe solicitar al usuario un nº indeterminado de datos y almacenarlos en un array. Una vez termina la
+introducción de datos, permitirá hacer búsquedas de datos en el array creado indicándonos las posiciones
+en que se encuentran los datos. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operadores</title>
+    <script>
+
+function cargarArray(array){
+    
+   let continuar=true;
+   while(continuar){ 
+    palabra =prompt("Ingrese la palabra");
+    array.push(palabra);
+    continuar = confirm("Quieres seguir introduciendo?");
+    }
+}
+function buscarDatos(array, palabra) {
+           
+            let posiciones = [];
+            array.forEach((item, index) => {
+                if (item === palabra) {
+                    posiciones.push(index);
+                }
+            });
+
+            if (posiciones.length > 0) {
+                document.write("Posiciones " +palabra+" : "+ posiciones.join(', ') + "<br>");
+            } else {
+                document.write("La palabra '" + palabra + "' no se encontró en el array.<br>");
+            }
+        }
+    </script>
+</head>
+<body>
+    <p id="resultado"></p>
+    <script>
+    let arrayNums = [];
+     cargarArray(arrayNums);
+    let respuesta=true;
+     while(respuesta){
+     buscarDatos(arrayNums, palabra=prompt("Ingrese lo que quiere buscar"));
+     respuesta = confirm("Quieres seguir buscando?");
+    }
+     
+    
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!-- Media positivos y negativos
+Leer 10 números enteros que se almacenarán en un array y mostrar el contenido del array,
+la media de los valores positivos , la media de los valores negativos, el número mayor y el
+menor.
+Realizar el ejercicio creando funciones que realicen cada una de las tareas solicitadas:
+cargarArray(), calculaMedias(),calculaMayorMenor(), muestraArray() -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operadores</title>
+    <script>
+
+function cargarArray(array){
+    
+    for (var i = 0; i < 10; i++) {
+        num1 = parseInt(prompt("Ingrese el "+(i+1)+" número"));
+            array.push(num1);
+    }
+}
+function calcularMedias(array){
+    var contador=0;
+    var suma=0;
+    var sumaNegativos=0;
+    var contadorNegativos=0;
+    for (var i = 0; i < array.length; i++) {
+        if (array[i]>0) {
+            suma += array[i];
+            contador++;
+        }else{
+            sumaNegativos += array[i];
+            contadorNegativos++;
+        }
+    }
+    mediaPositivos=suma/contador;
+    mediaNegativos=sumaNegativos/contadorNegativos;
+    document.getElementById("resultado").innerHTML +="Media Positivos: "+mediaPositivos+"<br> Media Negativos: "+mediaNegativos+"<br> ";
+    
+}
+function calculaMayorMenor(array){
+    let mayor=Math.max(...array);
+    let menor=Math.min(...array);
+    document.getElementById("resultado").innerHTML +="Mayor: "+mayor+"<br> Menor: "+menor+"<br> ";
+}
+function muestraArray(array){
+    muestra = array.join(',')
+    document.getElementById("resultado").innerHTML +=muestra+"<br> ";
+}
+    </script>
+</head>
+<body>
+    <p id="resultado"></p>
+    <script>
+    var arrayNums = [];
+     cargarArray(arrayNums);
+      muestraArray(arrayNums);
+     calcularMedias(arrayNums);
+     calculaMayorMenor(arrayNums);
+    
+
+    </script>
+</body>
+</html>

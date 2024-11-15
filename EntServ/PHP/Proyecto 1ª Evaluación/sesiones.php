@@ -12,4 +12,11 @@ function comprobar_sesion(){
 		return false;
 	}
 }
+
+function datos_sesion($email){
+	$bd=crear_base();
+	$query = "SELECT * FROM empleados WHERE email = '{$email}'";
+	$resul = $bd->query($query);
+	return $resul->fetch();
+}
 ?>

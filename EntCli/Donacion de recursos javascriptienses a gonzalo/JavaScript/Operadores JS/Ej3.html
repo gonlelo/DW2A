@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operadores</title>
+</head>
+<body>
+    <script>
+       var veces,puntos=3,total=100;
+var nombre,auxLog;
+nombre=prompt("Introduce tu nombre","");
+veces=prompt("¿Cuantas veces has entrado aquí","");
+auxLog=(nombre=="Ana");
+alert("¿Eres Ana?="+auxLog);
+veces=parseInt(veces);
+veces+=1;
+puntos=++veces;
+total=total+puntos+veces;
+auxLog=(nombre=="Pedro")&&(veces==3);
+alert ("El valor total es "+total+"\n¿Eres Pedro y has entrado 3 veces?:"+auxLog);
+    </script>
+</body>
+</html>

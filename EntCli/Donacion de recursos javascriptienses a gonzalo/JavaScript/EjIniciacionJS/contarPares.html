@@ -1,0 +1,38 @@
+<!-- Programa que solicite al usuario 5 números enteros y luego nos informe cuántos valores son
+pares y cuántos impares -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ej1</title>
+   
+</head>
+<body>
+   <script>
+    let pares = 0;
+    let impares = 0;
+    let contador = 0;
+
+    while (contador < 5) {
+      let numero = prompt("Introduce un número:");
+      
+      if (isNaN(numero)) {
+        alert("Debes introducir un número.");
+        continue;
+      }
+      
+      if (numero % 2 === 0) {
+        pares++;
+      } else {
+        impares++;
+      }
+      
+      contador++;
+    }
+
+    document.write("Pares: " + pares + "<br>");
+    document.write("Impares: " + impares + "<br>");
+ </script>
+</body>
+</html>

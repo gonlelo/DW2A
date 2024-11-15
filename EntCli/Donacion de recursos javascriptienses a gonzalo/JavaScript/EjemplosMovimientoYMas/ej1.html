@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            position: absolute;
+            top: auto;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div><img src="https://i.gifer.com/XOsX.gif" alt=""></div>
+    <script>
+        const div = document.querySelector('div');
+    let intervalo = setInterval(function() {
+        // if(parseInt(div.style.left)==(window.innerWidth-parseInt(div.offsetWidth))){
+        if(parseInt(div.style.left)>=(window.innerWidth)){
+            div.style.left = 0;
+        }else{
+            div.style.left=(parseInt(div.style.left) || 0)+1+'px';
+        }
+        
+    }, 0.001);
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function obtenerDiaDeLaSemana(fecha) {
+
+    const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+    
+    const dia = fecha.getDay();
+    
+    return diasSemana[dia];
+}
+function obtenerMes(fecha) {
+    const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio","Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    
+    const mes = fecha.getMonth();
+    
+    // Retornar el nombre del día correspondiente
+    return meses[mes];
+}
+function hace2(fecha) {
+    let hace2 = new Date(fecha);
+    hace2.setMonth(hace2.getMonth()-2);
+    return hace2.toLocaleDateString('es-ES', {weekday:"long"})+' '+hace2.getDate()+' de '+hace2.toLocaleDateString('es-ES', {month:"long"});
+}
+function en15(fecha) {
+    let hace2 = new Date(fecha);
+    hace2.setDate(hace2.getDate()+15);
+    return hace2.toLocaleDateString('es-ES', {weekday:"long"})+' '+hace2.getDate()+' de '+hace2.toLocaleDateString('es-ES', {month:"long"});
+}
+    </script>
+</head>
+<body>
+    <script>let actual= new Date();</script>
+    La fecha de hoy es <script>document.write(actual.getDate()+'/'+(actual.getMonth()+1)+'/'+actual.getFullYear()); </script><br>
+    La hora exacta es <script>document.write(actual.getHours()+':'+actual.getMinutes()+':'+actual.getSeconds()); </script><br>
+    Hoy es un <script>document.write(obtenerDiaDeLaSemana(actual)); </script> estupendo del mes de <script>document.write(obtenerMes(actual)); </script><br>
+    Hace dos meses era <script> document.write(hace2(actual)); </script><br>
+    Dentro de 15 dias sera <script> document.write(en15(actual)); </script><br>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!--Elegir un color
+Solicita un nombre de color (rojo, verde, azul, amarillo) mediante una ventana y escribe
+una línea de texto con fondo en dicho color. Debe controlar los posibles errores de
+introducción de datos. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ej6</title>
+   
+</head>
+<body>
+   <h1>Elegir un color</h1>
+   <script>
+      // Crear una ventana de diálogo para solicitar el color
+      while(true){
+      let colorElegido = prompt('Escribe el nombre de un color(rojo, verde, azul, amarillo)');
+      if(colorElegido=='rojo'){
+         document.write('<br><p style="background-color: red;">Has elegido el rojo</p>');
+         break;
+      }else if(colorElegido=='verde'){
+         document.write('<br><p style="background-color: green;">Has elegido el verde</p>');
+         break;
+      }else if(colorElegido=='azul'){
+         document.write('<br><p style="background-color: blue;">Has elegido el azul</p>');
+         break;
+      }else if(colorElegido=='amarillo'){
+         document.write('<br><p style="background-color: yellow;">Has elegido el amarillo</p>');
+         break;
+      }else{
+         alert('Por favor, introduce un color valido');
+      }}
+      
+ </script>
+</body>
+</html>

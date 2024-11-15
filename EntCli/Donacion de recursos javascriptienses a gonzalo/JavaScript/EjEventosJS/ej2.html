@@ -1,0 +1,42 @@
+<!--La página debe tener el siguiente comportamiento:
+ Al cargar la página aparece un mensaje de bienvenida
+ Al pulsar el botón, aparece mensaje con el nombre del autor
+ Al situar el foco sobre la 1ª caja nos informa del suceso
+ Al pulsar una tecla cuando estamos situados sobre la 2ª caja nos informa del suceso -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ej2</title>
+   <style>
+    td+td{
+        border: 2px solid; 
+    }
+    td{
+        width: 200px;
+    }
+   </style>
+</head>
+<body>
+    <table>
+        <td> <button>Pulsa</button></td><td id="espacio1" tabindex="0"></td><td tabindex="0" id="espacio2"></td>
+    </table>
+   <script>
+    window.addEventListener('load', function() {
+   alert('Bienvenido a mi sitio web');
+});
+    document.querySelector('button').addEventListener("click", function(){
+        alert('Ivan');
+    })
+    document.querySelector('td#espacio1').addEventListener('mouseover', function(){
+        alert('Has entrado en el primer espacio');
+    })
+    document.querySelector('#espacio2').addEventListener('keydown', function(){
+        alert('Has pulsado una tecla en el segundo espacio');
+    })
+
+      
+ </script>
+</body>
+</html>

@@ -20,13 +20,13 @@ if ($_SESSION['tipo'] != 0) {
 </head>
 <body>
     <h2>Crear Nuevo Ticket</h2>
-    <form action="principalEmpleado.php" method="POST">
+    <form action="principalEmpleado.php" method="POST" enctype="multipart/form-data">
         Titulo:<br>
         <input type="text" name="titulo" required><br><br>
 
         Mensaje:<br>
         <textarea name="mensaje" rows="4" required></textarea><br><br>
-
+        <input type="file" name="archivo" id="archivo"><br><br>
         <input type="submit" value='Enviar Ticket'>
     </form>
 </body>

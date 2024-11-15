@@ -1,0 +1,38 @@
+<!-- Generar un array de 3 filas x 4 columnas con números generados aleatoriamente entre 0 y 9, y
+posteriormente visualizar el array. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operadores</title>
+    <script>
+
+function generarArray(){
+    let array = [];
+    for (let i = 0; i < 3; i++) {
+        array[i]=[];
+        for (let j = 0; j < 4; j++) {
+               array[i][j]=Math.floor(Math.random()*10);
+            }
+            }
+            return array;
+}
+function mostrarArray(array){
+    let resultado = '';
+            for (let i = 0; i < array.length; i++) {
+                resultado += array[i].join(' ') + "<br>";
+            }
+            document.write( resultado);
+}
+
+    </script>
+</head>
+<body>
+    <script>
+     let arrayGenerado = generarArray();
+     mostrarArray(arrayGenerado);
+    </script>
+</body>
+</html>

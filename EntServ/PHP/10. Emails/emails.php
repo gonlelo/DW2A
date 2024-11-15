@@ -1,4 +1,4 @@
-1 <?php
+<?php
 use PHPMailer\PHPMailer\PHPMailer;
 function enviarEmail($destino, $nombre, $origen, $asunto, $mensaje){
 
