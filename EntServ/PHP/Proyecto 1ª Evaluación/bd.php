@@ -8,6 +8,8 @@ function crear_base(){
 
 	return $bd;
 }
+
+
 function comprobar_usuario($nombre, $clave){
 	$comprobar = array(
 		"Usuario" => false,
@@ -16,33 +18,26 @@ function comprobar_usuario($nombre, $clave){
 	// Incluyo los parámetros de conexión y creo el objeto PDO
 	include "configuracion_bd.php";
 	$bd = crear_base();
-	$query = "SELECT contraseña FROM empleados WHERE email = '$nombre'";
-	$resul = $bd->query($query);
-	foreach($resul as $fila){
-		if (password_verify($clave, $fila['contraseña'])) {
-		// Creo la sentencia SQL y ejecuto	
+
+	// Creo la sentencia SQL y ejecuto	
 	$query = "SELECT email FROM empleados WHERE email = '$nombre'";
 	$resul = $bd->query($query);
 	if($resul->rowCount() === 1){
 		$comprobar['Usuario'] = true;
-		$query = "SELECT contraseña, email FROM empleados WHERE email = '$nombre' AND contraseña = '{$fila['contraseña']}'";
+		$query = "SELECT email, contraseña FROM empleados WHERE email ='$nombre'";
 		$resul = $bd->query($query);
-		if($resul->rowCount() === 1){
-			return $resul->fetch();
-		}else {
-			return $comprobar;
+		foreach ($resul as $fila) {
+			if(md5($clave)===$fila['contraseña']){
+				return $resul->fetch();
+			}else {
+				return $comprobar;
+			}
 		}
 	}else{
 		return $comprobar;
 	}
-	} else {
-		//la contrasheña no coincide con el hash
-	}
-	}
-
-	
-	
 }
+
 
 function tipo_de_usuario($email){
 	$subcadena='';
@@ -114,7 +109,7 @@ function crearRespuesta($respuesta,$autor,$num){
 
 function mostrarRespuestas($ticket){
 	$bd = crear_base();
-	$query = "SELECT res.mensaje, emp.nombre, emp.apellido, DATE_FORMAT(res.fecha, '%Y-%m-%d %H:%i') as fecha FROM respuestas res LEFT JOIN empleados emp ON res.autor = emp.id WHERE res.ticket=$ticket ORDER BY fecha DESC";
+	$query = "SELECT res.mensaje, emp.nombre, emp.apellido, DATE_FORMAT(res.fecha, '%Y-%m-%d %H:%i:%s') as fecha FROM respuestas res LEFT JOIN empleados emp ON res.autor = emp.id WHERE res.ticket=$ticket ORDER BY fecha DESC";
 	$resul = $bd->query($query);
 	foreach($resul as $fila){
 		echo "<p><b>{$fila['nombre']} {$fila['apellido']}</b>: {$fila['mensaje']} <span style='padding-left:15em;'>{$fila['fecha']}</span></p> ";

@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $subcadena='';
             $letra = '@';
 
-            $hash = password_hash($clave, PASSWORD_DEFAULT);
+            $hash = md5($clave);
         
         // 1. Encontrar la posición de la letra en el string.
         $posicion = strpos($_POST['email'], $letra);

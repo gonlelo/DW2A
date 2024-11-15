@@ -1,6 +1,7 @@
 <?php
 require_once 'bd.php';
 require_once 'sesiones.php';
+require 'cabecera.php';
 
 //Al llegar a esta página se borra la sesión. Así un link a esta página se puede usar como cierre de sesión.
 cerrar_sesion();

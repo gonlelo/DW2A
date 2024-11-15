@@ -32,7 +32,7 @@ CREATE OR REPLACE TABLE `empleados` (
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `contraseña` varchar(50) NOT NULL,
+  `contraseña` varchar(100) NOT NULL,
   `verificado` BOOLEAN DEFAULT 0,
   `cod_verificacion` varchar(8) UNIQUE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -42,10 +42,10 @@ CREATE OR REPLACE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`id`, `nombre`, `apellido`, `email`, `contraseña`, `verificado`) VALUES
-(1, 'Antonio', 'Luna', 'antonioluna@soporte.empresa.com', '$2y$10$4F6BWwmRXJkju6GlmtiQAeoKeWQYeUlfgImDhmog7bK', 1),
-(2, 'Ana', 'Puertas', 'anapuertas@soporte.empresa.com', '$2y$10$4F6BWwmRXJkju6GlmtiQAeoKeWQYeUlfgImDhmog7bK', 1),
-(3, 'Juan', 'Sevilla', 'juansevilla@empresa.com', '$2y$10$4F6BWwmRXJkju6GlmtiQAeoKeWQYeUlfgImDhmog7bK', 1),
-(4, 'Macarena', 'Musgo', 'macarenamusgo@empresa.com', '$2y$10$4F6BWwmRXJkju6GlmtiQAeoKeWQYeUlfgImDhmog7bK', 1);
+(1, 'Antonio', 'Luna', 'antonioluna@soporte.empresa.com', '81dc9bdb52d04dc20036dbd8313ed055', 1),
+(2, 'Ana', 'Puertas', 'anapuertas@soporte.empresa.com', '81dc9bdb52d04dc20036dbd8313ed055', 1),
+(3, 'Juan', 'Sevilla', 'juansevilla@empresa.com', '81dc9bdb52d04dc20036dbd8313ed055', 1),
+(4, 'Macarena', 'Musgo', 'macarenamusgo@empresa.com', '81dc9bdb52d04dc20036dbd8313ed055', 1);
 
 -- --------------------------------------------------------
 
