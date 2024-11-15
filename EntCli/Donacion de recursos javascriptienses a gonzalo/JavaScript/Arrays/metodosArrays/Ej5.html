@@ -1,0 +1,67 @@
+<!-- “Introducir datos” solicita al usuario números y los almacena en un array
+“Calcular Pares” devuelve la lista de números pares que hay en el array
+“Comprueba Pares” indica si en el array hay números pares o no. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operadores</title>
+    <script>
+let arrayGenerado=[];
+function generarArray(){
+    let array=[]; 
+    datos=1;
+    while(datos!=null && datos!=''){
+    datos=prompt("Introduce un numero");
+    while(isNaN(datos)){
+        datos=prompt("Introduce un NUMERO");
+    }
+    array.push(datos);
+}
+    array= array.slice(0,-1)
+            return array;
+}
+function calcularPares(array){
+    let pares= array.filter(function(numero){
+        return numero%2==0
+    }
+
+)
+          
+    document.write(pares.join("<br>"));
+           
+}
+function comprobarPares(array){
+    let haypar= array.some(function(number){
+       return number%2==0;
+    })
+        if (!haypar) {
+            alert("No hay pares")
+        }else{
+            alert("Hay pares")
+        }
+           
+}
+
+    </script>
+</head>
+<body>
+    <button id="datos">Introducir datos</button>
+    <button id="pares">Calcuar Pares</button>
+    <button id="comprobar">Comprueba pares</button>
+    <script>
+        document.getElementById('datos').addEventListener('click',function(){
+      arrayGenerado = generarArray();
+    })
+    document.getElementById('pares').addEventListener('click',function(){
+      calcularPares(arrayGenerado);
+    })
+    document.getElementById('comprobar').addEventListener('click',function(){
+      comprobarPares(arrayGenerado);
+    })
+     
+    </script>
+</body>
+</html>

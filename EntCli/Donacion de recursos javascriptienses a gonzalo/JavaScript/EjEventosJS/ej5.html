@@ -1,0 +1,37 @@
+<!--Crea la siguiente página que me permite calcular el cuadrado de un nº introducido en la
+caja de texto que aparece en la pantalla.
+El funcionamiento será el siguiente:
+∙ Al pulsar el botón “cuadrado” aparecerá en la caja de texto “Resultado” el
+cuadrado del nº introducido en la caja “Introduzca un número:”
+∙ Al pasar con el ratón sobre el botón cuadrado aparecerá una ventana con el
+mensaje explicativo “Al pulsarlo se calculará el cuadrado del nº introducido”
+∙ Al situar el cursor en la caja de texto “Introduce un número:” aparecerá una
+ventana con el mensaje explicativo “Introduzca el nº cuyo cuadrado quiera
+calcular”. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ej5</title>
+   
+</head>
+<body>
+   <form action="">
+    <label for="contraseña">Introduzca un numero:</label>
+    <input type="number" id="num" name="" oninput="" title="Introduzca el nº cuyo cuadrado quiera
+calcular"><br><br>
+    <label for="normal">Resultado:</label>
+    <input type="number" id="cuadrado" name="" oninput=""><br><br>
+    <button type="button" title="Al pulsarlo se calculará el cuadrado del nº introducido">cuadrado</button>
+   </form>
+   <script>
+   document.querySelector('button').addEventListener('click', function(){
+        document.querySelector('input#cuadrado').value=
+        document.querySelector('#num').value*document.querySelector('#num').value;
+
+    })
+      
+ </script>
+</body>
+</html>

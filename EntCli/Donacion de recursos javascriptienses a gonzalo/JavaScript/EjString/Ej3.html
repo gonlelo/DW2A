@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let fraseDesordenada='viento con en cien popa cañones a por toda banda vela';
+        let frase2=[];
+        let frase1=[];
+        function ordenar(){
+            let palabras = fraseDesordenada.split(' ');
+            
+            for (let index = 0; index < palabras.length/2; index++) {
+                frase2.push(palabras[index*2]);
+            }
+            for (let index = 0; index < palabras.length/2; index++) {
+                frase1.push(palabras[index*2+1]);
+            }
+            return frase1.join(' ')+'<br>'+frase2.join(' ')+'<br>';
+        }
+        function caracteristicas() {
+            // Usamos map para crear un nuevo array con las primeras letras en mayúscula
+             
+            let fraseConMayus=frase1.map(element => {
+                if (element) {
+                    let primeraLetra = element.charAt(0);
+                    let restoPalabra = element.slice(1);
+                    return primeraLetra.toUpperCase() + restoPalabra;
+                }
+                return element;
+            });
+            //Solo primera letra mayus
+            let primeraMayus = frase1;
+            primeraLetra = primeraMayus[0].charAt(0).toUpperCase();
+            restoPalabra=primeraMayus[0].slice(1);
+            primeraMayus[0]=primeraLetra+restoPalabra;
+            //Longitud de la cadena
+            let longitud=frase1.join(' ').length;
+            //Numero de palabras
+            let palabras=frase1.length-1;
+            return fraseConMayus.join(' ')+'<br>'+primeraMayus.join(' ')+'<br>'+longitud+'<br>'+palabras;
+        }
+        function contarPalabrasFrase1(){
+            let resultado='';
+            for (let index = 0; index < frase1.length-1; index++) {
+                 resultado=resultado+((index+1)+'. '+frase1[index]+'<br>');
+            }
+           return resultado;
+        }
+        function contarPalabrasFrase2(){
+            let resultado='';
+            for (let index = 0; index < frase2.length; index++) {
+                 resultado=resultado+((index+1)+'. '+frase2[index]+'<br>');
+            }
+           return resultado;
+        }
+        function todoMayus() {
+            // Usamos map para crear un nuevo array con las todas las letras en mayúscula
+            let fraseMayus = frase2.map(element => {
+                if (element) {
+                    return element.toUpperCase();
+                }
+                return element;
+            });
+            return fraseMayus.join(' ');
+        }
+        function posCañones(){
+            return fraseDesordenada.indexOf('cañones');
+        }
+    </script>
+</head>
+<body>
+    Primera:<br>
+    <script> 
+        document.write(ordenar());
+    </script>
+    <br>
+    Segunda: <br>
+    <script>
+        document.write(caracteristicas());
+    </script>
+    <br><br>
+     Tercera: <br>
+     <script>
+         document.write(contarPalabrasFrase1());
+     </script>
+     <br><br>
+     Cuarta: <br>
+     <script>
+         document.write(contarPalabrasFrase2());
+     </script>
+     <br><br>
+     Quinta: <br>
+     <script>
+         document.write(todoMayus());
+     </script>
+     <br><br>
+     Sexta: <br>
+     <script>
+         document.write(posCañones());
+     </script>
+</body>
+</html>

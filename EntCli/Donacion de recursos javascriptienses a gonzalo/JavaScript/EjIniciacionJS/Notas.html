@@ -1,0 +1,59 @@
+<!-- Escribir un programa que lea 10 notas de alumnos y nos informe cuántos alumnos tienen
+sobresaliente, notable, aprobado y suspenso.
+Sobresaliente: entre 9 y 10
+Notable: entre 7 y 8
+Aprobado: entre 5 y 6
+Suspenso: menor que 5 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ej1</title>
+   
+   <script>
+    function evaluarNotas(notas){
+        if(notas<5){
+             suspenso+=1;
+        }else if(notas<7){
+            aprobado+=1;
+        }else if(notas<9){
+            notable+=1;
+        }else{
+            sobresaliente+=1;
+        }
+    }
+   </script>
+</head>
+<body>
+   <script>
+    let suspenso= 0;
+    let aprobado = 0;
+    let notable = 0;
+    let sobresaliente = 0;
+
+    for (let i = 0; i < 10; i++) {
+        let nota = parseInt(prompt("Ingrese la nota del alumno " + (i+1)));
+       while (isNaN(nota)) {
+         nota = parseInt(prompt("Ingrese la nota del alumno " + (i+1)));
+      }
+        evaluarNotas(nota);
+        
+    }
+
+    
+
+    
+    
+    
+    //escribir en el html
+    document.write("Suspensos: "+suspenso);
+    document.write("<br> Aprobados: "+aprobado);
+    document.write("<br> Notables: "+notable);
+    document.write("<br> Sobresalientes: "+sobresaliente);
+
+
+ </script>
+</body>
+</html>

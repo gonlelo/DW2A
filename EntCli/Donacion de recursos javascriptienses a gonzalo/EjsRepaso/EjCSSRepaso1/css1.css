@@ -1,0 +1,31 @@
+div{
+   
+    aspect-ratio: 1/1;
+    width: 5cm;
+    margin: 20px;
+}
+#inset{
+border: silver inset;
+border-width: 20px;
+}
+#outset{
+    border: silver outset;
+    border-width: 20px;
+}
+#double{
+    border: blue double;
+    border-width: 20px;
+}
+#groove{
+    border: blue groove;
+    border-width: 20px;
+}
+#ridge{
+    border: red ridge;
+    border-width: 20px;
+}
+#solid{
+    border: green solid;
+    border-width: 20px;
+}
+

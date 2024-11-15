@@ -1,0 +1,27 @@
+<!-- Programar una función a la cual le envíe tres enteros y los muestre ordenados de menor a mayor. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ej1</title>
+   <script>
+    function ordenarNumeros(a, b, c) {
+    let pequeño = Math.min(a,b,c);
+    let grande =  Math.max(a,b,c);
+    let medio = a+b+c-pequeño-grande;
+
+    document.write(pequeño+" < "+medio+" < "+grande);
+    }
+
+   </script>
+</head>
+<body>
+   <script>
+    let numero1 = parseInt(prompt("Ingrese el primer numero:"));
+    let numero2 = parseInt(prompt("Ingrese el segundo numero:"));
+    let numero3 = parseInt(prompt("Ingrese el tercer numero:"));
+    ordenarNumeros(numero1,numero2,numero3);
+ </script>
+</body>
+</html>

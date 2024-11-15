@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operadores</title>
+    <script>
+let meses=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+
+function calcularPares(array){
+    let pares= array.filter(function(numero){
+        return numero%2==0
+    }
+
+)
+          
+    document.write(pares.join("<br>"));
+           
+}
+function comprobarPares(array){
+    let haypar= array.some(function(number){
+       return number%2==0;
+    })
+        if (!haypar) {
+            alert("No hay pares")
+        }else{
+            alert("Hay pares")
+        }
+           
+}
+
+    </script>
+    <style>
+        textarea{
+            background-color: rgb(248, 248, 122);
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+    <script>document.write('{'+meses.join(',')+'}')</script><br>
+    <textarea name="resultado" id="resultado"></textarea><br><br>
+    Convertir el array en cadena de texto: <button id="convertir">Convertir en texto</button><br><br>
+    Invierte el orden del array: <button id="invertir">invertir orden</button><br><br>
+    Obten una proporcion del array. Escribe dos numeros del 1 al 12: <br><br>
+    <input type="number" id="menor">:primer numero <input type="number" id="mayor">:segundo numero <button id="seleccionar">Ver meses selecionados</button><br><br>
+   Elimina el primer elemento y lo introduce en una varaible: <button id="eliminar">Eliminar primer elemento</button><br><br>
+   Ordenar ascendentemente: <button id="ordenAsc">en orden ascendente</button><br><br>
+   Ordenar descendentemente: <button id="ordenDes">en orden descendente</button><br><br>
+   Metodo ordenar personalizado: Ordena por el ultimo caracter ascendentemente: <button id="personalizado">en orden personalizado</button><br><br>
+    <script>
+
+        document.getElementById('convertir').addEventListener('click',function(){
+     document.getElementById('resultado').value= meses.join(',')
+    })
+
+    document.getElementById('invertir').addEventListener('click',function(){
+        let invertido=meses;
+        invertido.reverse();
+        document.getElementById('resultado').value= invertido.join(',');
+    })
+
+    document.getElementById('seleccionar').addEventListener('click',function(){
+        let seleccionados=[];
+        let menor = parseInt(document.getElementById('menor').value);
+        let mayor = parseInt(document.getElementById('mayor').value);
+        if (isNaN(menor) || isNaN(mayor) || menor < 1 || mayor > 12) {
+        document.getElementById('resultado').value = "Tienes que introducir meses válidos entre 1 y 12.";
+    } else if (menor > mayor) {
+        document.getElementById('resultado').value = "El mes inicial no puede ser mayor que el mes final.";
+    } else {
+        seleccionados = meses.slice(menor - 1, mayor);
+        document.getElementById('resultado').value = seleccionados.join(', ');
+    }
+    })
+
+    document.getElementById('eliminar').addEventListener('click',function(){
+        let eliminado=meses.shift();
+     document.getElementById('resultado').value= meses.join(',')
+    })
+
+    document.getElementById('ordenAsc').addEventListener('click',function(){
+        let ordenA=meses.sort();
+     document.getElementById('resultado').value= ordenA.join(',')
+    })
+
+    document.getElementById('ordenDes').addEventListener('click',function(){
+        let ordenA=meses.sort();
+        ordenA.reverse();
+     document.getElementById('resultado').value= ordenA.join(',')
+    })
+
+    document.getElementById('personalizado').addEventListener('click',function(){
+        let ordenA=meses.sort(function(a,b){
+            if (a.charAt(a.length-1)<b.charAt(b.length-1)) {
+               return -1;
+            }else if (a.charAt(a.length-1)>b.charAt(b.length-1)) {
+                return 1;
+            }else{
+                return 0;
+            }
+            
+        });
+     document.getElementById('resultado').value= ordenA.join(',')
+    })
+     
+    </script>
+</body>
+</html>

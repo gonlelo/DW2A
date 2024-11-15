@@ -1,0 +1,38 @@
+<!-- Al cargarse crea una ventana de tamaño 200x200 centrada tanto horizontal como
+verticalmente en la pantalla y que tiene dos botones (“Maximizar” y “Minimizar”). El
+primero maximiza el tamaño de la ventana y el segundo vuelve a establecerle el tamaño
+original. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function openCenteredWindow() {
+         let altura = screen.height/2-100;
+         let anchura = screen.width/2-100;
+        let myWindow =  window.open('', '', 'width=200, height=200, top='+altura+', left='+anchura);
+        myWindow.document.write(`
+        <button id='b1'>Maximizar</button>
+        <button id='b2'>Minimizar</button>
+        <script>
+             function maximizar() {
+                        window.resizeTo(screen.width, screen.height);
+                        window.moveTo(0, 0);
+                    }
+                    function minimizar() {
+                        window.resizeTo(200, 200);
+                        window.moveTo(${anchura}, ${altura});
+                    }
+            document.getElementById('b1').onclick=maximizar;
+            document.getElementById('b2').onclick=minimizar;
+            <\/script>`
+        );
+        }
+    </script>
+</head>
+<body onload="openCenteredWindow()">
+    
+</body>
+</html>

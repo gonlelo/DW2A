@@ -1,0 +1,41 @@
+<!-- // Array impares
+Programa que solicita dos números al usuario, rellena un array con los números 
+impares comprendidos entre dichos números y posteriormente los muestra.
+Para ello, escribir 2 funciones (cargarArray y muestraArray) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operadores</title>
+    <script>
+        var num1,num2;
+var arrayImpares = new Array();
+function cargarArray(){
+    num1 = parseInt(prompt("Ingrese el primer número"));
+    num2 = parseInt(prompt("Ingrese el segundo número"));
+    if (num1>num2) {
+        extra=num1;
+        num1=num2;
+        num2=extra;
+    }
+    for (var i = num1; i <= num2; i++) {
+        if (i % 2 != 0) {
+            arrayImpares.push(i);
+        }
+    }
+}
+function muestraArray(array){
+    muestra = array.join(',')
+    alert(muestra);
+}
+    </script>
+</head>
+<body>
+    <script>
+     cargarArray(arrayImpares);
+     muestraArray(arrayImpares);
+    </script>
+</body>
+</html>

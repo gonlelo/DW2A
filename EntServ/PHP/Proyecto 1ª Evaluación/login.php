@@ -21,13 +21,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		//Aquí se incluyen todos los datos del usuario actual
 		$_SESSION['usuario'] = datos_sesion($_POST['usuario']);
 
-
-		if (tipo_de_usuario($_SESSION['email'])==1) {
-			header("Location: principalTécnico.php");
-		}else{
-			header("Location: principalEmpleado.php");
+		if ($_SESSION['usuario']['verificado'] == 1) {
+			if (tipo_de_usuario($_SESSION['email'])==1) {
+				header("Location: principalTécnico.php");
+			}else{
+				header("Location: principalEmpleado.php");
+			}
+		}else {
+			$err = 8;
 		}
-		return;
+
 	}
 }else {
 	if (isset($_GET['denegado'])) {
@@ -42,7 +45,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 	if(isset($_GET["redirigido"])){
-		$err = 5;
+		if ($_GET['redirigido'] == true) {
+			$err = 5;
+		}
+		if ($_GET['redirigido'] == 'verificado') {
+			$err = 7;
+		}
 	}
 } ?>
 
@@ -64,14 +72,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		</style>
 	</head>
 	<body>
-		<form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "POST">
+		<form action = "login.php" method = "POST">
 			<label for = "usuario">Usuario</label> 
 			<input value = "<?php if(isset($_POST['usuario'])) echo $_POST['usuario'];?>" id = "usuario" name = "usuario" type = "text" required>
 			<label for = "clave">Clave</label> 
 			<input id = "clave" name = "clave" type = "password" required>					
 			<input type = "submit">
 		</form>
-
+		<a href="registro.php">O regístrate aquí<a>
 		<?php
 		if (isset($err)) {
 			switch ($err) {
@@ -92,6 +100,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					break;
 				case 6:
 					echo "<b><p style='color: red'>ACCESO DENEGADO. El ticket que estás intentando acceder no es tuyo. </p></b>";
+					break;
+				case 7:
+					echo "<b><p style='color: green'>Cuenta verificada. Inicia sesión para continuar. </p></b>";
+					break;
+				case 8:
+					echo "<b><p style='color: red'>Cuenta no verificada. Verificala mediante el link enviado a tu correo electrónico AÑADIR 'MANDAR DE NUEVO'. </p></b>";
 					break;
 			}
 		} 

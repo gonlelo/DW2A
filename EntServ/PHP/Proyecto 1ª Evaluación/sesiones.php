@@ -15,7 +15,7 @@ function comprobar_sesion(){
 
 function datos_sesion($email){
 	$bd=crear_base();
-	$query = "SELECT * FROM empleados WHERE id = '{$email}'";
+	$query = "SELECT * FROM empleados WHERE email = '{$email}'";
 	$resul = $bd->query($query);
 	return $resul->fetch();
 }

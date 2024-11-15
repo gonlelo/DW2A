@@ -1,0 +1,50 @@
+<!-- Realice un documento web que incluya un pequeño script que, dado el número del
+Documento Nacional de Identidad, devuelva la letra que le corresponde para formar el
+NIF.
+Para ello se debe saber que la letra correspondiente se calcula en base a la operación
+"módulo" o "resto de la división entera" del número del DNI entre 23. Una vez obtenido
+el resultado de esta operación, se busca la letra correspondiente en una tabla que asigna
+dicha letra a cada uno de los posibles restos.
+La tabla debe contener los siguientes valores:
+"T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","
+C","K","E","T -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let tabla=["T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E","T"];
+        function Comprobar(digitos){
+            let errores='Error en la posicion';
+            if (!/^\d{8}[A-Za-z]{1}$/.test(digitos)) {
+                return 'Hay un error';
+            }else{
+                 let posicion = parseInt(digitos.slice(0, 8))%23;
+                 let alerta=tabla[posicion];
+                if (alerta==digitos.charAt(digitos.length-1)) {
+                    return 'bien hecho';
+                }else{
+                    return 'la letra no es correcta';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Numeros enteros</h1>    
+    DNI: <input type="text" id="numeros">
+    <br><br>
+    <button>Letra</button>
+    <script> 
+        document.querySelector('button').addEventListener('click',function(){
+        alert(Comprobar(document.getElementById('numeros').value));
+        
+    })
+        
+       
+       
+    </script>
+</body>
+</html>
