@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `proyecto1ev`
 --
+DROP DATABASE IF EXISTS `proyecto1ev`;
 CREATE DATABASE IF NOT EXISTS `proyecto1ev` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `proyecto1ev`;
 -- --------------------------------------------------------
@@ -56,7 +57,8 @@ CREATE OR REPLACE TABLE `tickets` (
   `mensaje` varchar(500) NOT NULL,
   `estado` varchar(11) NOT NULL DEFAULT 'Creado',
   `autor` int(11) DEFAULT NULL,
-  `fecha` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `fecha` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `archivo` VARCHAR(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
