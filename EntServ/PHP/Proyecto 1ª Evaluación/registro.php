@@ -3,7 +3,6 @@ require_once 'bd.php';
 require_once 'sesiones.php';
 require 'vendor/autoload.php';
 require 'emails.php';
-require 'cabecera.php';
 
 cerrar_sesion();
 
@@ -21,6 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }else{
             $subcadena='';
             $letra = '@';
+
+            $hash = password_hash($clave, PASSWORD_DEFAULT);
         
         // 1. Encontrar la posición de la letra en el string.
         $posicion = strpos($_POST['email'], $letra);
@@ -33,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $err = 3;
         }else {
             $cod = crear_cod_verificacion();
-            $query ="INSERT INTO `empleados` (`nombre`, `apellido`, `email`, `contraseña`, cod_verificacion) VALUES ('{$_POST['nombre']}', '{$_POST['apellido']}', '{$_POST['email']}', '{$_POST['clave']}','{$cod}' )";
+            $query ="INSERT INTO `empleados` (`nombre`, `apellido`, `email`, `contraseña`, cod_verificacion) VALUES ('{$_POST['nombre']}', '{$_POST['apellido']}', '{$_POST['email']}', '{$hash}','{$cod}' )";
             $bd->query($query);
             $err = enviarEmail($_POST['email'], $_POST['nombre'], 'tuempresa@empresa.com', 'Verifica tu identidad', "Copia el siguiente link en tu navegador: <br> <br> localhost{$_SERVER['PHP_SELF']}?cod={$cod}");
         }

@@ -20,7 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `proyecto1ev`
 --
-DROP DATABASE IF EXISTS `proyecto1ev`;
 CREATE DATABASE IF NOT EXISTS `proyecto1ev` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `proyecto1ev`;
 -- --------------------------------------------------------
@@ -42,11 +41,11 @@ CREATE OR REPLACE TABLE `empleados` (
 -- Volcado de datos para la tabla `empleados`
 --
 
-INSERT INTO `empleados` (`id`, `nombre`, `apellido`, `email`, `contraseña`) VALUES
-(1, 'Antonio', 'Luna', 'antonioluna@soporte.empresa.com', '1234'),
-(2, 'Ana', 'Puertas', 'anapuertas@soporte.empresa.com', '1234'),
-(3, 'Juan', 'Sevilla', 'juansevilla@empresa.com', '1234'),
-(4, 'Macarena', 'Musgo', 'macarenamusgo@empresa.com', '1234');
+INSERT INTO `empleados` (`id`, `nombre`, `apellido`, `email`, `contraseña`, `verificado`) VALUES
+(1, 'Antonio', 'Luna', 'antonioluna@soporte.empresa.com', '$2y$10$4F6BWwmRXJkju6GlmtiQAeoKeWQYeUlfgImDhmog7bK', 1),
+(2, 'Ana', 'Puertas', 'anapuertas@soporte.empresa.com', '$2y$10$4F6BWwmRXJkju6GlmtiQAeoKeWQYeUlfgImDhmog7bK', 1),
+(3, 'Juan', 'Sevilla', 'juansevilla@empresa.com', '$2y$10$4F6BWwmRXJkju6GlmtiQAeoKeWQYeUlfgImDhmog7bK', 1),
+(4, 'Macarena', 'Musgo', 'macarenamusgo@empresa.com', '$2y$10$4F6BWwmRXJkju6GlmtiQAeoKeWQYeUlfgImDhmog7bK', 1);
 
 -- --------------------------------------------------------
 
@@ -60,7 +59,19 @@ CREATE OR REPLACE TABLE `tickets` (
   `estado` varchar(11) NOT NULL DEFAULT 'Creado',
   `autor` int(11) DEFAULT NULL,
   `fecha` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `archivo` VARCHAR(255) DEFAULT NULL
+  `ruta` varchar(120) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Estructura de tabla para la tabla `respuestas`
+--
+
+CREATE OR REPLACE TABLE `respuestas` (
+  `num` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `mensaje` varchar(500) NOT NULL,
+  `autor` int(11) DEFAULT NULL,
+  `ticket` int(11) DEFAULT NULL,
+  `fecha` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --

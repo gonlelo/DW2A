@@ -16,13 +16,16 @@ function comprobar_usuario($nombre, $clave){
 	// Incluyo los parámetros de conexión y creo el objeto PDO
 	include "configuracion_bd.php";
 	$bd = crear_base();
-
-	// Creo la sentencia SQL y ejecuto	
+	$query = "SELECT contraseña FROM empleados WHERE email = '$nombre'";
+	$resul = $bd->query($query);
+	foreach($resul as $fila){
+		if (password_verify($clave, $fila['contraseña'])) {
+		// Creo la sentencia SQL y ejecuto	
 	$query = "SELECT email FROM empleados WHERE email = '$nombre'";
 	$resul = $bd->query($query);
 	if($resul->rowCount() === 1){
 		$comprobar['Usuario'] = true;
-		$query = "SELECT contraseña, email FROM empleados WHERE email = '$nombre' AND contraseña = '$clave'";
+		$query = "SELECT contraseña, email FROM empleados WHERE email = '$nombre' AND contraseña = '{$fila['contraseña']}'";
 		$resul = $bd->query($query);
 		if($resul->rowCount() === 1){
 			return $resul->fetch();
@@ -32,6 +35,13 @@ function comprobar_usuario($nombre, $clave){
 	}else{
 		return $comprobar;
 	}
+	} else {
+		//la contrasheña no coincide con el hash
+	}
+	}
+
+	
+	
 }
 
 function tipo_de_usuario($email){

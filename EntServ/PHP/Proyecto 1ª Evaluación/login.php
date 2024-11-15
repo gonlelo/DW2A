@@ -11,6 +11,7 @@ si va mal, mensaje de error */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {  
 	
 	$usu = comprobar_usuario($_POST['usuario'], $_POST['clave']);
+	
 	if(isset($usu['Usuario']) && $usu['Usuario'] == false){
 		$err = 1;
 	}elseif (isset($usu["Contraseña"])){

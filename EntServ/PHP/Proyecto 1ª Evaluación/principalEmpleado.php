@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
-    <h1>Hola empleado</h1>
+    <h1>Hola Empleado</h1>
     <a href="login.php" style="float: right">Cerrar Sesión </a>
     <a href="crearTicket.php">Crear ticket</a>
     <br><br>

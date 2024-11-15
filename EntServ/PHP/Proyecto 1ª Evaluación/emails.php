@@ -13,9 +13,9 @@ function enviarEmail($destino, $nombre, $origen, $asunto, $mensaje){
 	$mail->Host       = "sandbox.smtp.mailtrap.io";    
 	$mail->Port       = 2525;                 
 	// introducir usuario de google
-	$mail->Username   = "8046f19602f019"; 
+	$mail->Username   = "69629862a446c6"; 
 	// introducir clave
-	$mail->Password   = "ff2f70cffa04bf";   	
+	$mail->Password   = "d52e605a66a13d";   	
 	$mail->SetFrom($origen, 'Test');
 	// asunto
 	$mail->Subject    = "$asunto";
