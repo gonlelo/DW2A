@@ -33,6 +33,9 @@ CREATE OR REPLACE TABLE `empleados` (
   `apellido` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `contraseña` varchar(100) NOT NULL,
+  `teléfono` int(10),
+  `ruta_pfp` varchar(100),
+  `pais_nacimiento` varchar(50),
   `verificado` BOOLEAN DEFAULT 0,
   `cod_verificacion` varchar(8) UNIQUE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;

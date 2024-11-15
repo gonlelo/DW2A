@@ -1,6 +1,8 @@
 <?php
 include 'bd.php';
 require_once 'sesiones.php';
+require 'vendor/autoload.php';
+require_once 'emails.php';
 
 // Comprobar que la sesión esté iniciada y que el usuario sea un empleado.
 comprobar_sesion();
@@ -16,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
     $titulo = $_POST['titulo'];
     $mensaje = $_POST['mensaje'];
-    if (isset($titulo) && isset($mensaje)&&isset($_FILES['archivo']) && $_FILES['archivo']['error'] == 0) {
+    if (isset($titulo) && isset($mensaje)) {
             
         // Query para encontrar el id para pasarlo a la columna 'autor' de tickets
         $sqlId = "SELECT id FROM empleados WHERE email='". $_SESSION['email'] ."'";
@@ -27,22 +29,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $nombreArchivo = $_FILES['archivo']['name'];
             $temporalArchivo = $_FILES['archivo']['tmp_name'];
             
-            $directorioDestino = "/xampp/htdocs/Ivan/Proyecto1ev/adjuntosTickets/";
+            $directorioDestino = rtrim(dirname(__FILE__), '/')."/archivos/";
+            
     
             if (!is_dir($directorioDestino)) {
                 mkdir($directorioDestino, 0777, true);
             }
     
-            // Generar un nombre único para el archivo
             $nombreUnico = basename($nombreArchivo);
             $rutaArchivo = $directorioDestino . $nombreUnico;
     
             move_uploaded_file($temporalArchivo, $rutaArchivo);
 
         // Insertar el ticket en la base de datos
-        $query = "INSERT INTO tickets (título, mensaje, autor,ruta) VALUES ('$titulo', '$mensaje','$id','$rutaArchivo')";
+        $query = "INSERT INTO tickets (título, mensaje, autor, ruta) VALUES ('$titulo', '$mensaje','$id','$rutaArchivo')";
 
         if ($bd->exec($query) === 1) {
+
+            enviarEmail($_SESSION['usuario']['email'], $_SESSION['usuario']['nombre'], 'tuempresa@empresa.com', '¡Ticket creado!', "Tu ticket ha sido creado. Un tecnico lo revisara lo antes posible.<br><br><br>
+            <b>{$_POST['titulo']}</b><br><br>
+            {$_POST['mensaje']}");
             // Redirigir al usuario para evitar el reenvío de formulario
             header("Location: principalEmpleado.php?ticket_creado=1");
             exit;
@@ -53,6 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Cerrar la conexión
         $bd = null;
     }
+}
+if (isset($_GET['ticket_creado'])) {
+    echo "<p style='color:green'>Ticket creado</p>";
 }
 
 ?>
@@ -98,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Consulta de tickets del usuario, con búsqueda opcional
-    $query = "SELECT num, título, mensaje, estado, DATE_FORMAT(fecha, '%Y-%m-%d %H:%i') as fecha FROM tickets WHERE autor = :id";
+    $query = "SELECT ruta, num, título, mensaje, estado, DATE_FORMAT(fecha, '%Y-%m-%d %H:%i') as fecha FROM tickets WHERE autor = :id";
 
     // Si hay un término de búsqueda, lo añadimos a la consulta
     if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
@@ -123,6 +132,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<a href='ticket.php?idticket={$ticket['num']}' style='text-decoration: none;'>";
             echo "<div>";
             echo "<h1><b>#{$ticket['num']}</b> {$ticket['título']}</h1>";
+            // $db = crear_base();
+	        // $query1 = "SELECT ruta FROM tickets WHERE num={$ticket['num']} AND (ruta LIKE '%.jpg' OR ruta LIKE '%.png' OR ruta LIKE '%.peg' OR ruta LIKE '%.gif')";
+            // $resul1 = $db->query($query1);
+            // if($resul1->rowCount() >= 1){
+            // foreach($resul1 as $fila){
+		    //Si el archivo es .png o .jpg se muestra la imagen
+            // if ($fila['ruta']) {
+            var_dump($ticket['ruta']) ;
+            $ticket['ruta'] = str_replace('\\', '/', $ticket['ruta']);
+            echo "<img src='".htmlspecialchars($ticket['ruta'], ENT_QUOTES, 'UTF-8')."' width='100px' style='float:right;'>";
+            // }
+        
+        // }
+		
+	// }
+            
+            
             echo "<p>{$ticket['mensaje']}</p><br>";
             echo "<p><b>{$ticket['estado']}</b></p>";
             echo "<p><small>Fecha: {$ticket['fecha']}</small></p>";

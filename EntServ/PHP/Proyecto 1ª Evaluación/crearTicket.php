@@ -1,10 +1,26 @@
 <?php 
 require_once 'sesiones.php';
+require_once 'bd.php';
 
 //Comprobar que la sesión esté iniciada y que el usuario sea un empleado.
 comprobar_sesion();
 if ($_SESSION['tipo'] != 0) {
-    header("Location: login.php?denegado=empleado");
+    
+ header("Location: login.php?denegado=empleado");
+   
+}else{
+$bd=crear_base();
+    $query = "SELECT COUNT(num) as total_tickets FROM tickets WHERE autor ={$_SESSION['usuario']['id']} AND estado!='Cerrado'";
+    $resul = $bd->query($query);
+    foreach($resul as $fila){
+        if ($fila['total_tickets']>=3) {
+            //no puede añadir un ticket
+            header("Location: principalEmpleado.php");
+        }else{
+            //se añade el ticket
+            
+        }
+    }
 }
 ?>
 

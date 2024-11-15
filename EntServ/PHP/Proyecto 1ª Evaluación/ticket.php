@@ -1,6 +1,9 @@
 <?php
 require_once 'bd.php';
 require_once 'sesiones.php';
+require 'vendor/autoload.php';
+require 'emails.php';
+
 comprobar_sesion();
 if (!isset($_GET['idticket'])) {
     header("Location: principalTécnico.php");
@@ -8,9 +11,24 @@ if (!isset($_GET['idticket'])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST")  {
 	if (isset($_POST['eliminar'])) {
 		borrarTicket($_POST['eliminar']);
+        if (tipo_de_usuario($_SESSION['email'])==1) {
+            header("Location: principalTécnico.php");
+        }else{
+            header("Location: principalEmpleado.php");
+        }  
         header("Location: principalTécnico.php");
 	}else if (isset($_POST['estado'])) {
+        $bd=crear_base();
+        $query = "SELECT tck.num, tck.título, tck.mensaje, tck.estado, emp.nombre, emp.email, DATE_FORMAT(tck.fecha, '%Y-%m-%d %H:%i') as fecha FROM tickets tck LEFT JOIN empleados emp ON tck.autor = emp.id WHERE tck.num = {$_GET['idticket']}";
+        $resul = $bd->query($query);
+        foreach ($resul as $fila) {
+            $email = $fila['email'];
+            $nombre = $fila['nombre'];
+            $titulo = $fila['título'];
+            $estado = $fila['estado'];
+        }
 	    cambiarEstado($_POST['estado'],$_POST['idTicket']);
+        enviarEmail($email, $nombre, 'tuempresa@empresa.com', 'El estado de tu ticket ha cambiado', "Tu ticket <b>$titulo</b> ha sido marcado por un tecnico como <b>{$_POST['estado']}</b>");
 	}
 }
 $bd=crear_base();
@@ -98,10 +116,10 @@ foreach ($resul as $fila) {
                         </form><br><br>"; 
                         echo "<form method='POST' style='display:inline;'> 
                         Estado: <select id='estado' name='estado'>
-                            <option value='creado' ". ($ticket['estado'] == 'creado' ? 'selected' : '') .">Creado</option>
-                            <option value='solucionado' ". ($ticket['estado'] == 'solucionado' ? 'selected' : '') ." >Solucionado</option>
-                            <option value='en proceso' ". ($ticket['estado'] == 'en proceso' ? 'selected' : '') ." >En proceso</option>
-                            <option value='cerrado' ". ($ticket['estado'] == 'cerrado' ? 'selected' : '') ." >Cerrado</option>
+                            <option value='Creado' ". ($ticket['estado'] == 'Creado' ? 'selected' : '') .">Creado</option>
+                            <option value='Solucionado' ". ($ticket['estado'] == 'Solucionado' ? 'selected' : '') ." >Solucionado</option>
+                            <option value='En proceso' ". ($ticket['estado'] == 'En proceso' ? 'selected' : '') ." >En proceso</option>
+                            <option value='Cerrado' ". ($ticket['estado'] == 'Cerrado' ? 'selected' : '') ." >Cerrado</option>
                         </select>
                         <input type='hidden' name='idTicket' value='{$ticket['num']}'>
                         <button type='submit' style='text-align: left'>Cambiar</button>

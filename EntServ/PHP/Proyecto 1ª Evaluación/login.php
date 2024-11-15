@@ -45,6 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if ($_GET['denegado'] == 'ticketajeno') {
 			$err = 6;
 		}
+		if ($_GET['denegado'] == 'perfilajeno') {
+			$err = 9;
+		}
 	}
 	if(isset($_GET["redirigido"])){
 		if ($_GET['redirigido'] == true) {
@@ -108,6 +111,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					break;
 				case 8:
 					echo "<b><p style='color: red'>Cuenta no verificada. Verificala mediante el link enviado a tu correo electrónico AÑADIR 'MANDAR DE NUEVO'. </p></b>";
+					break;
+				case 8:
+					echo "<b><p style='color: red'></p>ACCESO DENEGADO. El perfil que estás intentando acceder no es tuyo. </b>";
 					break;
 			}
 		} 
