@@ -1,0 +1,18 @@
+isidorogangrenado@soporte.empresa.com
+martapincho@soporte.empresa.com
+doloresmiasma@empresa.com
+evasalmon@empresa.com
+pinochocromosoma@empresa.com
+
+Contraseña para todos: 1234
+
+Ampliaciones realizadas:
+1- Tickets realistas
+2- Buscador de Tickets
+3- Registro
+4- Contraseña cifrada
+5- Adjuntar archivos
+7- Perfiles
+8- Foto personal
+11- Técnicos relajados
+13- Notofocación por correo
