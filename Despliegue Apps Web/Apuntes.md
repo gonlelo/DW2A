@@ -80,3 +80,6 @@ Los logs se almacenan casi siempre en **/var/log/apache2/...**. Para saber la di
 8. Ahora deberíamos poder acceder a la página desde el navegador tanto desde **localhost:[puerto_usado]** como desde **[nombre_sitio]:[puerto_usado]**
 
 Si tenemos varias páginas web usando el mismo puerto, si se accede mediante localhost[puerto_usado] se mostrará la primera página creada que use este puerto. Para distinguir entre páginas en un mismo puerto habrá que usar el nombre del sitio seguido del puerto. **Cuidado con no olvidarse de añadir cada página a /etc/hosts.**
+
+### Docker compose
+- **apt install docker-compose** Instala Docker Compose.
