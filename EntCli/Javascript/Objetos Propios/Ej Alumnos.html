@@ -29,5 +29,29 @@
 </table>
 	   <hr>
 	   <center><input type="button" value="Buscar Alumnos por Aficiones" onClick="Buscar()"></center>
+
+<script>
+    let TablaAlumnos = [];
+    class alumno{
+        constructor(nombre, apellido, foto, aficiones, paginaWeb, correo){
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.foto = foto;
+            this.aficiones = aficiones;
+            this.paginaWeb = paginaWeb;
+            this.correo = correo;
+            TablaAlumnos = this;
+        }
+
+        visualiza(){
+
+
+        }
+
+    }
+
+
+</script>
+
 </body>
 </html>

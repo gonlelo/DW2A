@@ -1,17 +1,3 @@
-// Se debe definir una clase llamada „alumno‟ que tendrá un constructor que recibe como
-// parámetros los valores iniciales de cada propiedad (nombre, apellidos, foto, aficiones,
-// paginaWeb y correo) y un método „visualiza‟ que carga los datos del alumno
-// seleccionado.
-// Para almacenar la información de todos los alumnos se debe crear un array de objetos
-// „TablaAlumnos‟.
-// La carga de los datos de alumnos se hará inicializando el array de objetos, es decir, no
-// se le piden al usuario los datos.
-// El campo “Aficiones” contiene el nombre de las aficiones del alumno separadas por una
-// coma (en caso de tener varias).
-// El botón “Buscar Alumnos por Aficiones” nos pedirá una afición y mostrará el nombre
-// de los alumnos que tengan dicha afición
-
-
 class Alumno {
     constructor(nombre, apellidos, foto, aficiones, paginaWeb, correo) {
         this.nombre= nombre;
