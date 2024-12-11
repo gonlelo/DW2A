@@ -22,7 +22,7 @@ foreach($equipos as $equipo)
 
 // FindOneBy con 1 criterio de búsqueda
 echo "<strong>Equipo: cuyo nombre es 'Real Madrid'</strong><br>";
-$equipo = $entityManager->getRepository('Equipo')->findOneBy(array('nombre' => 'Real Madrid'));
+$equipo = $entityManager->getRepository('Equipo')->findOneBy(['nombre' => 'Real Madrid']);
 echo "Nombre: ". $equipo->getNombre(). " ". $equipo->getFundacion(). " ". $equipo->getCiudad()."<br>";
 
 

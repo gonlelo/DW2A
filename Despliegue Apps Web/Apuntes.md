@@ -83,3 +83,24 @@ Si tenemos varias páginas web usando el mismo puerto, si se accede mediante loc
 
 ### Docker compose
 - **apt install docker-compose** Instala Docker Compose.
+
+### Proxy Inverso
+Cuando le pidamos a apache ?¿?¿
+
+### FTP (File Transfer Protocol)
+**Puerto de conexión para FTP: 21** (Se interpreta que esta conexión "de control" es la activa)
+**Puerto de transferencia de archivos: 20** (Se interpreta que esta conexión "de ficheros" es la pasiva)
+**Se usa un puerto por archivo que se esté transfiriendo.** Si el 20 ya está ocupado **va buscando puertos libres** para transferir los archivos necesarios.
+
+##### SSH (Secure Shell)
+Otra manera segura de conectarse a un equipo servidor y transferir archivos. **Funciona a través del puerto 22** por defecto. Solo se accede al otro equipo mediante comandos (terminal).
+
+La seguridad es dada por claves públicas y privadas y encriptación de estas.
+
+### DNS (Domain Name Service)
+Cuando le preguntamos por un host devuelve una dirección.
+ - DNS raiz: contiene las direcciones de los DNS TLD
+ - DNS TLD: contiene las direcciones de todos los DNS autoritativos de dominios con uno o varios TLD específico(s)
+  - DNS autoritativo: 
+##### DHCP (Dynamic Host Configuration Protocol)
+Asigna la dirección IP, la máscara y la puerta de enlace predeterminada a cada equipo. También proporciona los DNS por defecto.

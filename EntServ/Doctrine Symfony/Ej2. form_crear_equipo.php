@@ -3,7 +3,7 @@ require_once "bootstrap.php";
 require_once './src/Equipo.php';
 
 if (isset($_POST['nombre'])) {
-    $repetido = $entityManager->getRepository('Equipo')->findOneBy(array('nombre' => $_POST['nombre']));
+    $repetido = $entityManager->getRepository('Equipo')->findOneBy(['nombre' => $_POST['nombre']]);
     if ($repetido) {
         echo "<p style='color:red'>MEEEEC ERRORRRR REPETIDOOO   </p>";
         $err = true;

@@ -16,7 +16,6 @@ if (isset($_POST['nombre'])) {
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -61,10 +60,18 @@ if (isset($_POST['nombre'])) {
     </style>
 </head>
 <body>
-    <h1 style="text-align: center">Eliminar un  Equipo</h1>
+    <h1 style="text-align: center">Mostrar jugadores de un equipo</h1>
     <form method="POST">
-        <label for="nombre">Nombre del Equipo:</label>
-        <input type="text" id="nombre" name="nombre" required>
+        <label for="eq">Nombre del Equipo:</label>
+      <select name="nombre" id="eq">
+        <?php 
+        $equipos = $entityManager->getRepository('Equipo')->findAll();
+        foreach ($equipos as $equipo) {
+        $nombre = $equipo->getNombre();
+        echo "<option value='$nombre'>$nombre</option>";
+        }
+        ?>
+      </select>
         <button type="submit">Eliminar Equipo</button>
     </form>
 </body>
