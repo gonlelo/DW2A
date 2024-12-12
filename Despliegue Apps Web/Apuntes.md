@@ -82,10 +82,13 @@ Los logs se almacenan casi siempre en **/var/log/apache2/...**. Para saber la di
 Si tenemos varias páginas web usando el mismo puerto, si se accede mediante localhost[puerto_usado] se mostrará la primera página creada que use este puerto. Para distinguir entre páginas en un mismo puerto habrá que usar el nombre del sitio seguido del puerto. **Cuidado con no olvidarse de añadir cada página a /etc/hosts.**
 
 ### Docker compose
+Sirve para levantar varios contenedores a la vez simulando que están en la misma red por lo que estarían conectados entre sí.
 - **apt install docker-compose** Instala Docker Compose.
 
 ### Proxy Inverso
-Cuando le pidamos a apache ?¿?¿
+Servidor web que va a atender peticiones redireccionando a otros servidores de aplicaciones.
+Analiza la URL y decide dónde redireccionar al usuario.
+Útil para balancear la carga entre servidores de aplicaciones desarrolladas en diferentes lenguajes (?)
 
 ### FTP (File Transfer Protocol)
 **Puerto de conexión para FTP: 21** (Se interpreta que esta conexión "de control" es la activa)
