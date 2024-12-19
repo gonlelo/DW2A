@@ -21,12 +21,12 @@ Tipos de peticiones: **GET, POST, PUT, DELETE...**
 
 - **docker help** Lista los comandos disponibles y su descripción
 - **docker run [imagen]** Lanza un contenedor con nombre aleatorio a partir de una imagen. La imagen es obligatoria siempre.
-    - **docker run --detach [imagen] // docker run -d [imagen]** Evita que se ligue el contenedor lanzado a la terminal desde la que se lanza. Lo lanza en modo background (?)
+    - **docker run --detach [imagen] // docker run -d [imagen]** Evita que se ligue el contenedor lanzado a la terminal desde la que se lanza. Lo lanza en modo background. Esto se traduce en que si se usa este parámetro pero te dejará seguir ejecutando comandos en vez de tener la terminal ocupada.
     - **docker run --port X:Y [imagen] // docker run -p [imagen]** Redirecciona las peticiones al puerto X al puerto Y.
         - **docker run -d -p X:Y [imagen]** Combina los dos efectos (En verdad todo se puede combinar así que no voy a poner todas las combinaciones)
     - **docker run --name [nombre_contenedor] [imagen]** Lanza un contenedor con el nombre deseado.
     - **docker run --env [nombre_variable_entorno]=[valor_deseado] [imagen] // docker run -e [nombre_variable_entorno]=[valor_deseado] [imagen]** Asigna a una variable de entorno del contenedor lanzado un valor.
-    - **docker run -v [host] [contenedor]** Mapeo bidireccional del host y el contenedor. (?)
+    - **docker run -v [host] [contenedor]** Mapeo bidireccional del host y el contenedor. ([?](https://stackoverflow.com/questions/32269810/understanding-docker-run-v-command))
 - **docker ps (-a)** Muestra una lista de los contenedores lanzados (y sin lanzar)
 - **docker logs [nombre_contenedor]** Mostrar logs del contenedor.
 - **docker rm [nombre_contenedor]** Elimina el contenedor.
@@ -34,7 +34,7 @@ Tipos de peticiones: **GET, POST, PUT, DELETE...**
 - **docker build [archivo]** Construye una imagen a partir de un archivo. Para usar el archivo Dockerfile (el nombre que se usa normalmente por convenio) se escribe **docker build .** (Nótese el punto).
     - **docker build -t [nombre_imagen] [archivo]** Con -t (de tag) le pones el nombre que quieras a la imagen que estás creando.
 - **docker rmi [nombre_imagen]** Elimina una imagen.
-- **docker exec [comando]** Ejecuta un comando dentro de un contenedor (ESTE ESTÁ MAL FALTAN COSAS)
+- **docker exec [contenedor] [comando]** Ejecuta un comando dentro de un contenedor.
 - **docker inspect [nombre_contenedor]** Muestra mucha información de un contenedor.
 ### Programación en Docker
 El archivo se llamará Dockerfile y contendrá todas las instrucciones y comandos para crear una imagen personalizada.
@@ -104,6 +104,24 @@ La seguridad es dada por claves públicas y privadas y encriptación de estas.
 Cuando le preguntamos por un host devuelve una dirección.
  - DNS raiz: contiene las direcciones de los DNS TLD
  - DNS TLD: contiene las direcciones de todos los DNS autoritativos de dominios con uno o varios TLD específico(s)
-  - DNS autoritativo: 
+  - DNS autoritativo: almacena la información más actualizada sobre los dominios y las IP asociadas a estos.
 ##### DHCP (Dynamic Host Configuration Protocol)
 Asigna la dirección IP, la máscara y la puerta de enlace predeterminada a cada equipo. También proporciona los DNS por defecto.
+
+### GIT
+Los archivos en una carpeta controlada pueden tener 4 estados:
+- **untracked** Git no conoce el fichero y por tanto no está bajo seguimiento. Con **git add[archivo]** pasa a staged.
+- **modified** El archivo staged ha sufrido cambios
+- **staged** El archivo está listo para ser commiteado
+- **commited** El estado (la versión) del fichero ha sido guardado
+****
+- **git status** Proporciona información sobre la rama, los commits echos, los archivos no tackeados, los archivos modificados...
+- **git init** Inicializa* un repositorio en la carpeta en la que se ejecuta 
+    - **git init [nombre_carpeta]** Crea una carpeta en el directorio que se ejecuta y la inicializa como repositorio.
+- **git add [nombre_fichero]** Empieza a seguir un fichero untracked por lo que pasa a staged.
+- **git diff** Muestra los cambios entre los ficheros staged y los modified
+- **git restore [nombre_archivo]** Elimina los cambios de modified y el estado del fichero vuelve a ser staged.
+- **git commit -m"[mensaje_commit]"** Hace commmit con un mensaje.
+- **git log** Muestra el historial de commits
+
+*Al "inicializar" un repositorio en realidad lo que pasa es que se crea un directorio .git que indica que esa carpeta está siendo monitorizada por git e incluye información diversa sobre el control de versiones y su configuración (config, description, HEAD, branches...)
