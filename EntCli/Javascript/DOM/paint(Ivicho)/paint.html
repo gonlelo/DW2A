@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TABLERO DIBUJO</title>
+<link type="text/css" rel="stylesheet" href="EjercicioTablero.css" />
+<script type="text/javascript" src="EjercicioTablero.js"></script>
+</head>
+<body>
+<p>TABLERO DE DIBUJO EN JAVASCRIPT</p>
+<table width="500" border="1" id="paleta" summary="Tabla de selecciÃ³n de colores">
+  <caption>
+    Haga CLICK en un color para comenzar a pintar
+  </caption>
+  <tr><td class="color1"></td><td class="color2"></td><td class="color3"></td><td class="color4"></td><td class="color5"></td><td class="color6"></td></tr>
+  <tr><td colspan="6" id="pincel">Estado del pincel</td></tr>
+</table>
+
+<p></p>
+<div id="zonadibujo">  <table id="tablero" border="1">
+    <tbody>
+      <script>
+        for (let i = 0; i < 30; i++) {
+          document.write('<tr>');
+          for (let j = 0; j < 30; j++) {
+            document.write('<td style="width: 10px; height: 10px;"></td>');
+          }
+          document.write('</tr>');
+        }
+
+      </script>
+    </tbody>
+  </table>
+</div>
+<script>
+  let colorElegido='';
+  let activo=false;
+  function clickYellow() {
+    document.getElementById('pincel').style.backgroundColor = 'yellow';
+    colorElegido = 'yellow';
+    document.getElementById('pincel').style.color = 'black';
+  }
+  function clickRed() {
+    document.getElementById('pincel').style.backgroundColor = 'red';
+    colorElegido = 'red';
+    document.getElementById('pincel').style.color = 'black';
+  }
+  function clickBlue() {
+    document.getElementById('pincel').style.backgroundColor = 'blue';
+    colorElegido = 'blue';
+    document.getElementById('pincel').style.color = 'black';
+  }
+  function clickGreen() {
+    document.getElementById('pincel').style.backgroundColor = 'green';
+    colorElegido = 'green';
+    document.getElementById('pincel').style.color = 'black';
+  }
+  function clickBlack() {
+    document.getElementById('pincel').style.backgroundColor = 'black';
+    colorElegido = 'black';
+    document.getElementById('pincel').style.color = 'white';
+  }
+  function clickWhite() {
+    document.getElementById('pincel').style.backgroundColor = 'white';
+    colorElegido = 'white';
+    document.getElementById('pincel').style.color = 'black';
+  }
+  function paintActive() {
+    if(activo){
+      activo=false;
+      document.getElementById('pincel').innerHTML = 'Pincel inactivo';
+    }else{
+      activo=true;
+      document.getElementById('pincel').innerHTML = 'Pincel activo';
+    }
+  }
+  document.getElementById('zonadibujo').onclick = paintActive;
+  document.getElementsByClassName('color1')[0].onclick = clickYellow;
+  document.getElementsByClassName('color2')[0].onclick = clickGreen;
+  document.getElementsByClassName('color3')[0].onclick = clickBlack;
+  document.getElementsByClassName('color4')[0].onclick = clickRed;
+  document.getElementsByClassName('color5')[0].onclick = clickBlue;
+  document.getElementsByClassName('color6')[0].onclick = clickWhite;
+  let cells = document.querySelectorAll('#tablero tr td');
+  cells.forEach(cell => {
+    cell.onmouseover = function() {
+      if(activo){
+        this.style.backgroundColor = colorElegido;
+      }
+    }
+  });
+
+
+</script>
+</body>
+</html>
