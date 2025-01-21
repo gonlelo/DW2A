@@ -1,2 +1,2 @@
-# DW2A
-Poco más que el destello de las luces al empezar
+# DW2A (2024 - 2025)
+Repositorio para todos los proyectos y actividades de 2º de DAW + programación de 1º
