@@ -86,9 +86,11 @@ Sirve para levantar varios contenedores a la vez simulando que están en la mism
 - **apt install docker-compose** Instala Docker Compose.
 
 ### Proxy Inverso
-Servidor web que va a atender peticiones redireccionando a otros servidores de aplicaciones.
+Servidor web que **va a atender peticiones redireccionando a otros servidores de aplicaciones.**
 Analiza la URL y decide dónde redireccionar al usuario.
-Útil para balancear la carga entre servidores de aplicaciones desarrolladas en diferentes lenguajes (?)
+Un proxy inverso es un tipo de servidor proxy que toma peticiones HTTP(S) y las distribuye de forma transparente a uno o más servidores backend. Los proxies inversos son útiles porque muchas aplicaciones web modernas procesan las peticiones HTTP entrantes utilizando servidores de aplicaciones backend. Estos servidores **no están pensados para que los usuarios accedan a ellos** directamente, y a menudo sólo soportan funciones HTTP rudimentarias.
+
+Puedes utilizar un proxy inverso para evitar que se acceda directamente a estos servidores de aplicaciones subyacentes. También se pueden utilizar para distribuir la carga de las solicitudes entrantes a varios servidores de aplicaciones diferentes, aumentando el rendimiento a escala y proporcionando seguridad ante fallos. Pueden suplir las carencias con funciones que los servidores de aplicaciones no ofrecen, como el almacenamiento en caché, la compresión o el cifrado SSL.
 
 ### FTP (File Transfer Protocol)
 **Puerto de conexión para FTP: 21** (Se interpreta que esta conexión "de control" es la activa)
