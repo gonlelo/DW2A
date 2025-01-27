@@ -46,6 +46,7 @@ public class Interfaz {
 		JButton btnNewButton = new JButton("polla");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.setBounds(1000, 1000, 450, 300);
 			}
 		});
 		frame.getContentPane().add(btnNewButton, BorderLayout.SOUTH);
