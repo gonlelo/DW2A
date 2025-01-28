@@ -1,0 +1,23 @@
+Formato esperado:
+Empieza con un signo + (opcional).
+Código de país (1-3 dígitos).
+Espacio o guion (opcional).
+Número principal (9-12 dígitos).
+Construcción paso a paso:
+Signo + (opcional):
+
+\\+?.
+Código de país:
+De 1 a 3 dígitos: \\d{1,3}.
+
+Separador (opcional):
+Espacio o guion: [ -]?.
+
+Número principal:
+De 9 a 12 dígitos: \\d{9,12}.
+
+Unir las partes:
+^\\+?\\d{1,3}[ -]?\\d{9,12}$
+
+Regex final:
+String phoneRegex = "^\\+?\\d{1,3}[ -]?\\d{9,12}$";
